@@ -18,7 +18,7 @@ type Problem struct {
 
 func (app *application) useGotifyEndpoint() {
 	app.pb.OnServe().BindFunc(func(se *core.ServeEvent) error {
-		se.Router.Any("/message", func(re *core.RequestEvent) error {
+		se.Router.POST("/message", func(re *core.RequestEvent) error {
 			// Helper function to send problem response
 			sendProblem := func(status int, title, detail string) error {
 				re.Response.Header().Set("Content-Type", "application/problem+json")

@@ -9,7 +9,7 @@ import (
 func (app *application) useNtfyEndpoint() {
 	app.pb.OnServe().BindFunc(func(se *core.ServeEvent) error {
 
-		se.Router.Any("/ntfy/{topic}", func(re *core.RequestEvent) error {
+		se.Router.POST("/ntfy/{topic}", func(re *core.RequestEvent) error {
 			// Hello World
 			topic := re.Request.PathValue("topic")
 			fmt.Println("Hello World", topic)
