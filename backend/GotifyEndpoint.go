@@ -10,7 +10,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-// Add problem response type
+// Add problem response type for error handling
 type Problem struct {
 	Type     string `json:"type"`
 	Title    string `json:"title"`
