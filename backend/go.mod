@@ -2,7 +2,11 @@ module mnlr.de/MNLRBase
 
 go 1.23.1
 
-require github.com/pocketbase/pocketbase v0.23.12
+require (
+	github.com/containrrr/shoutrrr v0.8.0
+	github.com/pocketbase/dbx v1.11.0
+	github.com/pocketbase/pocketbase v0.23.12
+)
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7 // indirect
@@ -44,7 +48,6 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/ncruces/go-strftime v0.1.9 // indirect
-	github.com/pocketbase/dbx v1.11.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/spf13/cast v1.7.1 // indirect
 	github.com/spf13/cobra v1.8.1 // indirect

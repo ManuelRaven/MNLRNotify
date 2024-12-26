@@ -34,6 +34,11 @@ func main() {
 	app := newApplication()
 	app.mountFs()
 	app.useMigrations()
+	app.useSetOwner()
+	app.useOnMessage()
+	app.useCronCleanupMessages()
+	app.useGotifyEndpoint()
+	app.useNtfyEndpoint()
 
 	log.Fatal(app.pb.Start())
 }

@@ -11,6 +11,10 @@ export enum Collections {
 	Mfas = "_mfas",
 	Otps = "_otps",
 	Superusers = "_superusers",
+	Channel = "channel",
+	Message = "message",
+	Reciever = "reciever",
+	Sender = "sender",
 	Users = "users",
 }
 
@@ -85,6 +89,48 @@ export type SuperusersRecord = {
 	verified?: boolean
 }
 
+export type ChannelRecord = {
+	created?: IsoDateString
+	id: string
+	lifetime_seconds?: number
+	name: string
+	owner: RecordIdString
+	updated?: IsoDateString
+}
+
+export type MessageRecord = {
+	channel: RecordIdString
+	created?: IsoDateString
+	id: string
+	text: string
+	updated?: IsoDateString
+}
+
+export enum RecieverTypeOptions {
+	"gotify" = "gotify",
+	"ntfy" = "ntfy",
+}
+export type RecieverRecord = {
+	channels?: RecordIdString[]
+	created?: IsoDateString
+	id: string
+	name: string
+	owner: RecordIdString
+	token?: string
+	type: RecieverTypeOptions
+	updated?: IsoDateString
+}
+
+export type SenderRecord = {
+	channel?: RecordIdString[]
+	created?: IsoDateString
+	id: string
+	name: string
+	owner: RecordIdString
+	sendurl: string
+	updated?: IsoDateString
+}
+
 export type UsersRecord = {
 	avatar?: string
 	created?: IsoDateString
@@ -104,6 +150,10 @@ export type ExternalauthsResponse<Texpand = unknown> = Required<ExternalauthsRec
 export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemFields<Texpand>
 export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
+export type ChannelResponse<Texpand = unknown> = Required<ChannelRecord> & BaseSystemFields<Texpand>
+export type MessageResponse<Texpand = unknown> = Required<MessageRecord> & BaseSystemFields<Texpand>
+export type RecieverResponse<Texpand = unknown> = Required<RecieverRecord> & BaseSystemFields<Texpand>
+export type SenderResponse<Texpand = unknown> = Required<SenderRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 
 // Types containing all Records and Responses, useful for creating typing helper functions
@@ -114,6 +164,10 @@ export type CollectionRecords = {
 	_mfas: MfasRecord
 	_otps: OtpsRecord
 	_superusers: SuperusersRecord
+	channel: ChannelRecord
+	message: MessageRecord
+	reciever: RecieverRecord
+	sender: SenderRecord
 	users: UsersRecord
 }
 
@@ -123,6 +177,10 @@ export type CollectionResponses = {
 	_mfas: MfasResponse
 	_otps: OtpsResponse
 	_superusers: SuperusersResponse
+	channel: ChannelResponse
+	message: MessageResponse
+	reciever: RecieverResponse
+	sender: SenderResponse
 	users: UsersResponse
 }
 
@@ -135,5 +193,9 @@ export type TypedPocketBase = PocketBase & {
 	collection(idOrName: '_mfas'): RecordService<MfasResponse>
 	collection(idOrName: '_otps'): RecordService<OtpsResponse>
 	collection(idOrName: '_superusers'): RecordService<SuperusersResponse>
+	collection(idOrName: 'channel'): RecordService<ChannelResponse>
+	collection(idOrName: 'message'): RecordService<MessageResponse>
+	collection(idOrName: 'reciever'): RecordService<RecieverResponse>
+	collection(idOrName: 'sender'): RecordService<SenderResponse>
 	collection(idOrName: 'users'): RecordService<UsersResponse>
 }

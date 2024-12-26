@@ -9,12 +9,19 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'home' }"
       >Home</BNavItem
     >
-    <BNavItem exact exact-active-class="active" :to="{ name: 'testing' }"
-      >testing</BNavItem
+    <BNavItem exact exact-active-class="active" :to="{ name: 'channels' }"
+      >Channels</BNavItem
     >
-    <BNavItem>Link</BNavItem>
-    <BNavItem>Another Link</BNavItem>
-    <BNavItem disabled>Disabled</BNavItem>
+    <BNavItem exact exact-active-class="active" :to="{ name: 'senders' }"
+      >Senders</BNavItem
+    >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'messages' }"
+      >Messages</BNavItem
+    >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'recievers' }"
+      >Recievers</BNavItem
+    >
+
     <BNavItemDropdown right>
       <!-- Using 'button-content' slot -->
       <template #button-content>
@@ -23,11 +30,6 @@
       <BDropdownItem href="#">Profile</BDropdownItem>
       <BDropdownItem @click="logout">Sign Out</BDropdownItem>
     </BNavItemDropdown>
-    <!-- Right aligned nav items -->
-    <BNavForm class="d-flex">
-      <BFormInput class="me-2" placeholder="Search" />
-      <BButton type="submit" variant="outline-success">Search</BButton>
-    </BNavForm>
   </BNav>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="h-100">
     <div class="sidebar bg-body">
-      <strong class="app-title">MNLR_Base</strong>
+      <strong class="app-title">MNLRNotify</strong>
       <TheSidebarNav />
     </div>
     <div class="content">
@@ -13,13 +13,13 @@
           variant="primary"
         >
           <BNavbarToggle target="nav-collapse" />
-          <BNavbarBrand href="#">MNLR_Base</BNavbarBrand>
+          <BNavbarBrand href="#">MNLRNotify</BNavbarBrand>
         </BNavbar>
 
         <BOffcanvas placement="start" id="nav-collapse" is-nav>
           <TheSidebarNav></TheSidebarNav>
           <template #title>
-            <strong class="app-title-canvas">MNLR_Base</strong>
+            <strong class="app-title-canvas">MNLRNotify</strong>
           </template>
         </BOffcanvas>
       </div>

@@ -1,6 +1,6 @@
 import { useAuth } from "@/composeables/useAuth";
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "../views/system/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,12 +20,33 @@ const router = createRouter({
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import("@/views/AboutView.vue"),
+          component: () => import("@/views/system/AboutView.vue"),
         },
         {
           path: "/testing",
           name: "testing",
-          component: () => import("@/views/TestingView.vue"),
+          component: () => import("@/views/system/TestingView.vue"),
+        },
+        {
+          path: "/channels",
+          name: "channels",
+          component: () => import("@/views/ChannelView.vue"),
+        },
+
+        {
+          path: "/messagesView",
+          name: "messages",
+          component: () => import("@/views/MessageView.vue"),
+        },
+        {
+          path: "/senders",
+          name: "senders",
+          component: () => import("@/views/SenderView.vue"),
+        },
+        {
+          path: "/recievers",
+          name: "recievers",
+          component: () => import("@/views/RecieverView.vue"),
         },
       ],
     },
@@ -39,12 +60,12 @@ const router = createRouter({
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import("@/views/LoginView.vue"),
+          component: () => import("@/views/system/LoginView.vue"),
         },
         {
           path: "/register",
           name: "register",
-          component: () => import("@/views/RegisterView.vue"),
+          component: () => import("@/views/system/RegisterView.vue"),
         },
       ],
     },
