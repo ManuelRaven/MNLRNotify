@@ -81,8 +81,14 @@ func (app *application) useGotifyEndpoint() {
 				// Send message to channel
 				// The message has the fields text and created
 
+				info, err2 := re.RequestInfo()
+				messagedata, ok := info.Body["message"].(string)
+				if err2 != nil || !ok {
+					return sendProblem(400, "Bad Request", "Message is required")
+				}
+
 				message := core.NewRecord(messageCollection)
-				message.Set("text", "Hello World")
+				message.Set("text", messagedata)
 				message.Set("channel", channel)
 				err := app.pb.Save(message)
 				if err != nil {
