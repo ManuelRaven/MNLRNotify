@@ -27,7 +27,8 @@ builds:
       - darwin
     flags:
       - -tags=production
-    
+    id: "mnlrbase"  # Add this line to identify the build
+    binary: "mnlrbase"  # Add this line to name the binary
 
 archives:
   - format: tar.gz
@@ -56,6 +57,7 @@ dockers:
       - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
     ids:
       - mnlrbase
+    use: buildx
 
 changelog:
   sort: asc
