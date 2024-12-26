@@ -48,6 +48,16 @@ const router = createRouter({
           name: "recievers",
           component: () => import("@/views/RecieverView.vue"),
         },
+        {
+          path: "/guides",
+          name: "guides",
+          component: () => import("@/views/guides/GuidesView.vue"),
+        },
+        {
+          path: "/guides/proxmox",
+          name: "guides-proxmox",
+          component: () => import("@/views/guides/ProxmoxGuide.vue"),
+        },
       ],
     },
     {

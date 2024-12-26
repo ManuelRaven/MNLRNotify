@@ -21,6 +21,9 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'recievers' }"
       >Recievers</BNavItem
     >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'guides' }"
+      >Integration Guides</BNavItem
+    >
 
     <BNavItemDropdown right>
       <!-- Using 'button-content' slot -->
