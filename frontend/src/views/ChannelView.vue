@@ -208,10 +208,8 @@ const createChannel = async () => {
 };
 
 const sortFields: Exclude<TableFieldRaw<ChannelResponse>, string>[] = [
-  { key: "id", label: "ID", sortable: true },
   { key: "name", label: "Name", sortable: true },
-  { key: "lifetime_seconds", label: "Lifetime", sortable: true },
-  { key: "owner", label: "Owner" },
+  { key: "lifetime_seconds", label: "Lifetime of Messages", sortable: true },
   { key: "actions", label: "Actions" },
 ];
 

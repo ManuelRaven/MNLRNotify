@@ -43,6 +43,9 @@
     >
       <template #cell(channels)="row">
         {{ row.item.expand?.channels?.map((c) => c.name).join(", ") }}
+        <span v-if="!row.item.expand?.channels?.length" class="text-danger"
+          >No channel</span
+        >
       </template>
       <template #cell(token)="row">
         <div class="d-flex align-items-center gap-2">

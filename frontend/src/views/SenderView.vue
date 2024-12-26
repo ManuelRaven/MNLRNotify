@@ -89,6 +89,9 @@
     >
       <template #cell(channels)="row">
         {{ row.item.expand?.channel?.map((c) => c.name).join(", ") }}
+        <span v-if="!row.item.expand?.channel?.length" class="text-danger"
+          >No channel</span
+        >
       </template>
       <template #cell(sendurl)="row">
         {{ maskSendUrl(row.item.sendurl) }}
@@ -316,11 +319,9 @@ const createSender = async () => {
 };
 
 const sortFields: Exclude<TableFieldRaw<SenderResponse>, string>[] = [
-  { key: "id", label: "ID", sortable: true },
   { key: "name", label: "Name", sortable: true },
   { key: "sendurl", label: "Send URL", sortable: true },
   { key: "channels", label: "Channels" },
-  { key: "owner", label: "Owner" },
   { key: "actions", label: "Actions" },
 ];
 
