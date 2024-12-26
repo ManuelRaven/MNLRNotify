@@ -1,6 +1,3 @@
-// fs-dev.go
-//go:build !production
-
 package main
 
 import (
