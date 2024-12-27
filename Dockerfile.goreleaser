@@ -1,9 +1,8 @@
 FROM scratch
 
 # Copy only the pre-built binary from GoReleaser (frontend already embedded)
-COPY mnlrbase /app/mnlrbase
-RUN chmod +x /app/mnlrbase
+COPY mnlrnotify /
 
 EXPOSE 8090
 
-ENTRYPOINT ["/app/mnlrbase", "serve", "--http=0.0.0.0:8090"]
+ENTRYPOINT ["/app/mnlrnotify", "serve", "--http=0.0.0.0:8090"]
