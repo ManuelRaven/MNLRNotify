@@ -27,8 +27,8 @@ builds:
       - darwin
     flags:
       - -tags=production
-    id: "mnlrbase"  # Add this line to identify the build
-    binary: "mnlrbase"  # Add this line to name the binary
+    id: "mnlrnotify"  # Add this line to identify the build
+    binary: "mnlrnotify"  # Add this line to name the binary
 
 archives:
   - format: tar.gz
@@ -49,14 +49,14 @@ dockers:
   - image_templates:
       - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY }}:{{ .Version }}"
       - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY }}:latest"
-    dockerfile: Dockerfile.goreleaser
+    dockerfile: ../Dockerfile.goreleaser  # Change this line to use relative path
     build_flag_templates:
       - "--label=org.opencontainers.image.title={{ .ProjectName }}"
       - "--label=org.opencontainers.image.version={{ .Version }}"
       - "--label=org.opencontainers.image.created={{ .Date }}"
       - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
     ids:
-      - mnlrbase
+      - mnlrnotify
     use: buildx
 
 changelog:
