@@ -47,10 +47,12 @@ archives:
 
 dockers:
   - image_templates:
-      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}'
-      - '{{ if not .IsSnapshot }}ghcr.io/manuelraven/mnlrnotify:latest{{ end }}'
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-amd64'
+      - '{{ if not .IsSnapshot }}ghcr.io/manuelraven/mnlrnotify:amd64{{ end }}'
     dockerfile: ../Dockerfile.goreleaser
     build_flag_templates:
+      - "--pull"
+      - "--platform=linux/amd64"
       - "--label=org.opencontainers.image.title={{ .ProjectName }}"
       - "--label=org.opencontainers.image.version={{ .Version }}"
       - "--label=org.opencontainers.image.created={{ .Date }}"
@@ -59,6 +61,32 @@ dockers:
       - mnlrnotify
     use: buildx
     skip_push: auto
+  - image_templates:
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-arm64'
+      - '{{ if not .IsSnapshot }}ghcr.io/manuelraven/mnlrnotify:arm64{{ end }}'
+    dockerfile: ../Dockerfile.goreleaser
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm64"
+      - "--label=org.opencontainers.image.title={{ .ProjectName }}"
+      - "--label=org.opencontainers.image.version={{ .Version }}"
+      - "--label=org.opencontainers.image.created={{ .Date }}"
+      - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
+    goarch: arm64
+    ids:
+      - mnlrnotify
+    use: buildx
+    skip_push: auto
+
+docker_manifests:
+  - name_template: 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}'
+    image_templates:
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-amd64'
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-arm64'
+  - name_template: '{{ if not .IsSnapshot }}ghcr.io/manuelraven/mnlrnotify:latest{{ end }}'
+    image_templates:
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-amd64'
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}-arm64'
 
 changelog:
   sort: asc

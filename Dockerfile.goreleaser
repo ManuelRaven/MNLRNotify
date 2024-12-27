@@ -5,4 +5,4 @@ COPY mnlrnotify /
 
 EXPOSE 8090
 
-ENTRYPOINT ["/app/mnlrnotify", "serve", "--http=0.0.0.0:8090"]
+ENTRYPOINT ["/mnlrnotify", "serve", "--http=0.0.0.0:8090"]
