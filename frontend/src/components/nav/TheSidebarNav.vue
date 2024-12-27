@@ -33,6 +33,7 @@
       <BDropdownItem href="#">Profile</BDropdownItem>
       <BDropdownItem @click="logout">Sign Out</BDropdownItem>
     </BNavItemDropdown>
+    <BNavItem disabled>v{{ version }}</BNavItem>
   </BNav>
 </template>
 
@@ -41,6 +42,9 @@ import { useAuth } from "@/composeables/useAuth";
 import { BFormSelect, useColorMode } from "bootstrap-vue-next";
 import { ref, watchEffect } from "vue";
 import { useRouter } from "vue-router";
+import pkg from "../../../../package.json";
+
+const version = pkg.version;
 
 const auth = useAuth();
 const router = useRouter();
