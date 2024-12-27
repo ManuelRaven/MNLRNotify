@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM alpine:latest
+FROM alpine:latest
 
 # Install CA certificates for HTTPS
 RUN apk --no-cache add ca-certificates
