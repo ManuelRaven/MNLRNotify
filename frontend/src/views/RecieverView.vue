@@ -14,6 +14,77 @@
       @save="updateRecieverChannels"
     />
 
+    <BAccordion class="mb-3">
+      <BAccordionItem title="Endpoint Documentation">
+        <BNav tabs class="mb-3">
+          <BNavItem
+            :active="activeTab === 'gotify'"
+            @click="activeTab = 'gotify'"
+          >
+            Gotify
+          </BNavItem>
+          <BNavItem :active="activeTab === 'ntfy'" @click="activeTab = 'ntfy'">
+            Ntfy
+          </BNavItem>
+        </BNav>
+
+        <div v-if="activeTab === 'gotify'" class="p-3">
+          <h5>Gotify Endpoint</h5>
+          <p>
+            The Gotify endpoint is compatible with the Gotify protocol. You can
+            use any Gotify client or make direct HTTP requests.
+          </p>
+
+          <h6>Endpoint URL</h6>
+          <code class="d-block bg-light p-2 mb-3"> POST /message </code>
+
+          <h6>Authentication</h6>
+          <p>Use one of these authentication methods:</p>
+          <ul>
+            <li>Header: <code>X-Gotify-Key: your-token</code></li>
+            <li>Query parameter: <code>?token=your-token</code></li>
+            <li>Bearer token: <code>Authorization: Bearer your-token</code></li>
+          </ul>
+
+          <h6>Example Request</h6>
+          <BCard class="mb-3">
+            <pre class="mb-0"><code>curl -X POST \
+  "http://your-server/message" \
+  -H "X-Gotify-Key: your-token" \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hello World!"}'</code></pre>
+          </BCard>
+        </div>
+
+        <div v-if="activeTab === 'ntfy'" class="p-3">
+          <h5>Ntfy Endpoint</h5>
+          <p>
+            The Ntfy endpoint accepts simple POST requests with the message in
+            the body.
+          </p>
+
+          <h6>Endpoint URL</h6>
+          <code class="d-block bg-light p-2 mb-3">
+            POST /ntfy/{your-token}
+          </code>
+
+          <h6>Authentication</h6>
+          <p>The token is included directly in the URL path.</p>
+
+          <h6>Example Requests</h6>
+          <BCard class="mb-3">
+            <pre class="mb-0"><code># Simple text message
+curl -d "Hello World!" \
+  http://your-server/ntfy/your-token
+
+# Using printf to avoid newline
+printf "Hello World!" | curl -T - \
+  http://your-server/ntfy/your-token</code></pre>
+          </BCard>
+        </div>
+      </BAccordionItem>
+    </BAccordion>
+
     <div class="mb-3 d-flex gap-2">
       <BFormInput
         v-model="newReciever.name"
@@ -89,6 +160,7 @@
         <BButton
           size="sm"
           variant="info"
+          class="me-1"
           @click="
             () => {
               currentEditReciever = row.item;
@@ -97,6 +169,14 @@
           "
         >
           Manage Channels
+        </BButton>
+
+        <BButton
+          size="sm"
+          variant="success"
+          @click="() => sendTestMessage(row.item)"
+        >
+          Test
         </BButton>
       </template>
     </BTable>
@@ -304,9 +384,61 @@ const fetchRecievers = async () => {
   }
 };
 
+const sendTestMessage = async (receiver: RecieverResponse) => {
+  const baseUrl = window.location.origin;
+  const testMessage = "This is a test message from MNLRNotify!";
+
+  try {
+    if (receiver.type === "gotify") {
+      await fetch(`${baseUrl}/message`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Gotify-Key": receiver.token,
+        },
+        body: JSON.stringify({ message: testMessage }),
+      });
+    } else if (receiver.type === "ntfy") {
+      await fetch(`${baseUrl}/ntfy/${receiver.token}`, {
+        method: "POST",
+        body: testMessage,
+      });
+    }
+
+    toast.show?.({
+      props: {
+        title: "Success",
+        body: "Test message sent successfully",
+        variant: "success",
+      },
+    });
+  } catch (error) {
+    toast.show?.({
+      props: {
+        title: "Error",
+        body: "Failed to send test message",
+        variant: "danger",
+      },
+    });
+  }
+};
+
+const activeTab = ref("gotify");
+
 onMounted(async () => {
   await fetchRecievers();
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+pre {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin: 0;
+}
+
+code {
+  color: #d63384;
+}
+</style>

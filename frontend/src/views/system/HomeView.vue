@@ -67,9 +67,7 @@
           <code class="endpoint-code">
             POST /message<br />
             {<br />
-            "message": "Hello World",<br />
-            "priority": 5,<br />
-            "title": "Test Message"<br />
+            "message": "Hello World"<br />
             }
           </code>
         </div>

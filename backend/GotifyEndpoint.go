@@ -55,12 +55,12 @@ func (app *application) useGotifyEndpoint() {
 
 			// Try to find a reciever with the token
 			reciever, err := app.pb.FindRecordsByFilter(
-				"reciever",                 // collection
-				"token = {:token}",         // filter
-				"-created",                 // sort
-				1,                          // limit
-				0,                          // offset
-				dbx.Params{"token": token}, // optional filter params
+				"reciever",                            // collection
+				"token = {:token} && type = 'gotify'", // filter
+				"-created",                            // sort
+				1,                                     // limit
+				0,                                     // offset
+				dbx.Params{"token": token},            // optional filter params
 			)
 			if err != nil {
 				return sendProblem(500, "Internal Server Error", "Failed to query receiver")
