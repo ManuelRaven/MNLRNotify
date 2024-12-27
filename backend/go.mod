@@ -1,4 +1,4 @@
-module mnlr.de/MNLRBase
+module mnlr.de/MNLRNotify
 
 go 1.23.1
 
