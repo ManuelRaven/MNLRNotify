@@ -18,11 +18,17 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'messages' }"
       >Messages</BNavItem
     >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'chat' }"
+      >Messages (Chat)</BNavItem
+    >
     <BNavItem exact exact-active-class="active" :to="{ name: 'recievers' }"
       >Recievers</BNavItem
     >
     <BNavItem exact exact-active-class="active" :to="{ name: 'guides' }"
       >Integration Guides</BNavItem
+    >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'flows' }"
+      >Flow Diagram</BNavItem
     >
 
     <BNavItemDropdown right>

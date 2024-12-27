@@ -28,11 +28,15 @@ const router = createRouter({
           component: () => import("@/views/system/TestingView.vue"),
         },
         {
+          path: "/flows",
+          name: "flows",
+          component: () => import("@/views/FlowView.vue"),
+        },
+        {
           path: "/channels",
           name: "channels",
           component: () => import("@/views/ChannelView.vue"),
         },
-
         {
           path: "/messagesView",
           name: "messages",
@@ -57,6 +61,11 @@ const router = createRouter({
           path: "/guides/proxmox",
           name: "guides-proxmox",
           component: () => import("@/views/guides/ProxmoxGuide.vue"),
+        },
+        {
+          path: "/chat",
+          name: "chat",
+          component: () => import("../views/MessageChatView.vue"),
         },
       ],
     },

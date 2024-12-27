@@ -71,13 +71,16 @@ import TheSidebarNav from "./TheSidebarNav.vue";
   .content {
     margin-left: 0 !important;
     padding: 0rem;
+    padding-bottom: 70px;
   }
 }
 
-.content {
-  margin-left: 250px;
-  padding: 1rem;
-  padding-bottom: 70px;
+@media (min-width: 768px) {
+  .content {
+    margin-left: 250px;
+    padding: 1rem;
+    padding-bottom: 0;
+  }
 }
 
 .app-title {

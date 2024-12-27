@@ -10,7 +10,7 @@
 
     <NumberResponseModal
       v-model="showLifetimeModal"
-      title="Edit Lifetime"
+      title="Edit Lifetime in Seconds"
       :preset-value="currentEditChannel?.lifetime_seconds"
       :min="0"
       placeholder="Enter lifetime in seconds"

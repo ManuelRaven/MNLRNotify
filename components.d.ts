@@ -20,6 +20,7 @@ declare module 'vue' {
     BFormInput: typeof import('bootstrap-vue-next/components/BFormInput')['BFormInput']
     BFormInvalidFeedback: typeof import('bootstrap-vue-next/components/BForm')['BFormInvalidFeedback']
     BFormSelect: typeof import('bootstrap-vue-next/components/BFormSelect')['BFormSelect']
+    BFormTextarea: typeof import('bootstrap-vue-next/components/BFormTextarea')['BFormTextarea']
     BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
     BModalOrchestrator: typeof import('bootstrap-vue-next/components/BModal')['BModalOrchestrator']
     BNav: typeof import('bootstrap-vue-next/components/BNav')['BNav']
