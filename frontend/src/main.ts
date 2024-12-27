@@ -15,3 +15,15 @@ app.use(createPinia());
 app.use(router);
 app.use(createBootstrap()); // Important
 app.mount("#app");
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register(
+    (import.meta as any).env.MODE === "production"
+      ? "/service-worker.js"
+      : "/dev-sw.js?dev-sw",
+    {
+      type:
+        (import.meta as any).env.MODE === "production" ? "classic" : "module",
+    }
+  );
+}
