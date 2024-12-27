@@ -47,9 +47,9 @@ archives:
 
 dockers:
   - image_templates:
-      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY }}:{{ .Version }}"
-      - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY }}:latest"
-    dockerfile: ../Dockerfile.goreleaser  # Change this line to use relative path
+      - 'ghcr.io/manuelraven/mnlrnotify:{{ .Version }}'
+      - '{{ if not .IsSnapshot }}ghcr.io/manuelraven/mnlrnotify:latest{{ end }}'
+    dockerfile: ../Dockerfile.goreleaser
     build_flag_templates:
       - "--label=org.opencontainers.image.title={{ .ProjectName }}"
       - "--label=org.opencontainers.image.version={{ .Version }}"
@@ -58,6 +58,7 @@ dockers:
     ids:
       - mnlrnotify
     use: buildx
+    skip_push: auto
 
 changelog:
   sort: asc

@@ -1,5 +1,4 @@
-FROM alpine:latest
-WORKDIR /app
+FROM scratch
 
 # Copy only the pre-built binary from GoReleaser (frontend already embedded)
 COPY mnlrbase /app/mnlrbase
@@ -7,4 +6,4 @@ RUN chmod +x /app/mnlrbase
 
 EXPOSE 8090
 
-CMD ["/app/mnlrbase", "serve", "--http=0.0.0.0:8090"]
+ENTRYPOINT ["/app/mnlrbase", "serve", "--http=0.0.0.0:8090"]
