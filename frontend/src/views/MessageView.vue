@@ -19,6 +19,14 @@
       <template #cell(text)="row">
         <span class="text-break">{{ row.item.text }}</span>
       </template>
+      <template #cell(deliveryState)="row">
+        <BBadge :variant="getDeliveryStateVariant(row.item.deliveryState)">
+          {{ row.item.deliveryState || "pending" }}
+        </BBadge>
+      </template>
+      <template #cell(deliveryMessage)="row">
+        <span class="text-break">{{ row.item.deliveryMessage }}</span>
+      </template>
       <template #cell(actions)="row">
         <BButton
           size="sm"
@@ -35,7 +43,10 @@
 <script setup lang="ts">
 import { usePb } from "@/composeables/usePb";
 import type { ExpandChannelNameIdSingle } from "@/types/custom-types";
-import type { MessageResponse } from "@/types/pocketbase-types";
+import type {
+  MessageDeliveryStateOptions,
+  MessageResponse,
+} from "@/types/pocketbase-types";
 import {
   useModalController,
   useToastController,
@@ -76,10 +87,23 @@ const onDelete = async (message: MessageResponse, index: number) => {
   }
 };
 
+const getDeliveryStateVariant = (state?: MessageDeliveryStateOptions) => {
+  switch (state) {
+    case "success":
+      return "success";
+    case "failure":
+      return "danger";
+    default:
+      return "warning";
+  }
+};
+
 const sortFields: Exclude<TableFieldRaw<MessageResponse>, string>[] = [
   { key: "created", label: "Created", sortable: true },
   { key: "channel", label: "Channel", sortable: true },
   { key: "text", label: "Message" },
+  { key: "deliveryState", label: "Status", sortable: true },
+  { key: "deliveryMessage", label: "Delivery Message" },
   { key: "actions", label: "Actions" },
 ];
 

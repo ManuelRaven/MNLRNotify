@@ -98,9 +98,16 @@ export type ChannelRecord = {
 	updated?: IsoDateString
 }
 
+export enum MessageDeliveryStateOptions {
+	"pending" = "pending",
+	"failure" = "failure",
+	"success" = "success",
+}
 export type MessageRecord = {
 	channel: RecordIdString
 	created?: IsoDateString
+	deliveryMessage?: string
+	deliveryState?: MessageDeliveryStateOptions
 	id: string
 	text: string
 	updated?: IsoDateString

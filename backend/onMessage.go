@@ -14,6 +14,9 @@ func (app *application) useOnMessage() {
 		// e.App
 		// e.Record
 
+		var deliveryMessageLog string = ""
+		var deliveryState string = "success"
+
 		// Expand the record to include the "channel" field
 		channelId := e.Record.Get("channel").(string)
 		if channelId == "" {
@@ -32,18 +35,29 @@ func (app *application) useOnMessage() {
 			log.Println("error finding records", err)
 		}
 
-		// appendable collection
-		var sendurls []string
-
 		for _, record := range records {
-			log.Println("Send Message to Sender", record.GetString("name"))
-			sendurls = append(sendurls, record.GetString("sendurl"))
-		}
-
-		for _, sendurl := range sendurls {
+			var senderName = record.GetString("name")
+			log.Println("Send Message to Sender: " + senderName)
+			var sendurl = record.GetString("sendurl")
 			err := shoutrrr.Send(sendurl, e.Record.GetString("text"))
+
 			if err != nil {
 				log.Println("error sending message", err)
+				// Append to deliveryMessageLog
+				deliveryMessageLog += senderName + ": " + err.Error() + "\n\n"
+				deliveryState = "failure"
+			} else {
+				log.Println("Message sent successfully")
+				// Append to deliveryMessageLog
+				deliveryMessageLog += senderName + ": " + "Message sent successfully" + "\n\n"
+			}
+
+			// Update the deliveryState and deliveryMessageLog
+			e.Record.Set("deliveryState", deliveryState)
+			e.Record.Set("deliveryMessage", deliveryMessageLog)
+			err = app.pb.Save(e.Record)
+			if err != nil {
+				log.Println("error saving record", err)
 			}
 		}
 

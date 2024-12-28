@@ -31,11 +31,19 @@
               v-for="message in [...messages].reverse()"
               :key="message.id"
               class="message-item mb-3 p-2"
+              :class="getMessageStateClass(message.deliveryState)"
             >
               <div class="message-time text-muted small">
                 {{ new Date(message.created).toLocaleString() }}
               </div>
               <div class="message-text">{{ message.text }}</div>
+              <BAccordion v-if="message.deliveryMessage" class="mt-2">
+                <BAccordionItem title="Delivery Details">
+                  <div class="delivery-message text-break pre-wrap">
+                    {{ message.deliveryMessage }}
+                  </div>
+                </BAccordionItem>
+              </BAccordion>
             </div>
           </div>
         </template>
@@ -70,6 +78,7 @@
 import { usePb } from "@/composeables/usePb";
 import type {
   ChannelResponse,
+  MessageDeliveryStateOptions,
   MessageResponse,
 } from "@/types/pocketbase-types";
 import { useToastController } from "bootstrap-vue-next";
@@ -96,6 +105,17 @@ const fetchChannels = async () => {
         variant: "danger",
       },
     });
+  }
+};
+
+const getMessageStateClass = (state?: MessageDeliveryStateOptions) => {
+  switch (state) {
+    case "success":
+      return "message-success";
+    case "failure":
+      return "message-failure";
+    default:
+      return "message-pending";
   }
 };
 
@@ -223,8 +243,30 @@ onMounted(async () => {
   border-radius: 4px;
   max-width: 80%;
   color: var(--bs-body-color);
-  border: 1px solid var(--bs-border-color);
-  margin-left: auto; /* This will align messages to the right */
+  margin-left: auto;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.message-success {
+  border-color: var(--bs-success);
+}
+
+.message-failure {
+  border-color: var(--bs-danger);
+}
+
+.message-pending {
+  border-color: var(--bs-warning);
+}
+
+.delivery-message {
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 0.5rem;
+  background-color: var(--bs-tertiary-bg);
+  border-radius: 4px;
+  white-space: pre-wrap;
 }
 
 .message-text {

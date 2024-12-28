@@ -69,6 +69,7 @@ func (app *application) useNtfyEndpoint() {
 				message := core.NewRecord(messageCollection)
 				message.Set("text", messageText)
 				message.Set("channel", channel)
+				message.Set("deliveryState", "pending")
 				err := app.pb.Save(message)
 				if err != nil {
 					return sendProblem(500, "Internal Server Error", "Failed to save message")

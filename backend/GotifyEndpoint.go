@@ -90,6 +90,7 @@ func (app *application) useGotifyEndpoint() {
 				message := core.NewRecord(messageCollection)
 				message.Set("text", messagedata)
 				message.Set("channel", channel)
+				message.Set("deliveryState", "pending")
 				err := app.pb.Save(message)
 				if err != nil {
 					return sendProblem(500, "Internal Server Error", "Failed to save message")
