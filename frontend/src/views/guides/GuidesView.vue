@@ -34,6 +34,12 @@ const guides = [
     difficulty: "Intermediate",
     path: "/guides/proxmox",
   },
+  {
+    title: "Telegram Bot Setup",
+    description: "Learn how to create a Telegram bot and get your bot token",
+    difficulty: "Beginner",
+    path: "/guides/telegram",
+  },
   // More guides can be added here
 ];
 </script>

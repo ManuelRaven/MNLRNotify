@@ -63,6 +63,11 @@ const router = createRouter({
           component: () => import("@/views/guides/ProxmoxGuide.vue"),
         },
         {
+          path: "/guides/telegram",
+          name: "guides-proxmox",
+          component: () => import("@/views/guides/TelegramGuide.vue"),
+        },
+        {
           path: "/chat",
           name: "chat",
           component: () => import("../views/MessageChatView.vue"),
