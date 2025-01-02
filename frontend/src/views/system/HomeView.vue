@@ -103,6 +103,21 @@
   padding: 1rem;
   background: var(--bs-dark-bg-subtle);
   border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .flow-diagram {
+    flex-direction: column;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .flow-step {
+    width: 100%;
+  }
 }
 
 .flow-step {

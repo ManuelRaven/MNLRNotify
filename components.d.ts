@@ -40,6 +40,7 @@ declare module 'vue' {
     BToastOrchestrator: typeof import('bootstrap-vue-next/components/BToast')['BToastOrchestrator']
     IBiApple: typeof import('~icons/bi/apple')['default']
     IBiInfoCircle: typeof import('~icons/bi/info-circle')['default']
+    IBiList: typeof import('~icons/bi/list')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

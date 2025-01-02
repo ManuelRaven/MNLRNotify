@@ -1,7 +1,10 @@
 <template>
   <div class="chat-container">
     <!-- Channel Sidebar -->
-    <div class="channel-sidebar p-2 border-end overflow-y-auto">
+    <div
+      class="channel-sidebar p-2 border-end overflow-y-auto"
+      :class="{ 'sidebar-hidden': !showSidebar }"
+    >
       <h5 class="mb-3">Channels</h5>
       <div class="channel-list">
         <div
@@ -18,8 +21,16 @@
 
     <!-- Message Area -->
     <div class="message-area">
-      <div class="chat-header p-3 border-bottom">
-        <h4>{{ selectedChannel?.name || "Select a channel" }}</h4>
+      <div class="chat-header p-3 border-bottom d-flex align-items-center">
+        <BButton
+          class="me-2 d-md-none"
+          @click="toggleSidebar"
+          variant="outline-primary"
+          size="sm"
+        >
+          <IBiList />
+        </BButton>
+        <h4 class="mb-0">{{ selectedChannel?.name || "Select a channel" }}</h4>
       </div>
       <div class="message-list p-3" ref="messageContainer">
         <div v-if="!selectedChannel" class="text-center text-muted mt-5">
@@ -92,6 +103,7 @@ const messages = ref<MessageResponse[]>([]);
 const selectedChannel = ref<ChannelResponse | null>(null);
 const newMessage = ref("");
 const messageContainer = ref<HTMLElement | null>(null);
+const showSidebar = ref(true);
 
 const fetchChannels = async () => {
   try {
@@ -178,6 +190,10 @@ const sendMessage = async () => {
   }
 };
 
+const toggleSidebar = () => {
+  showSidebar.value = !showSidebar.value;
+};
+
 onMounted(async () => {
   await fetchChannels();
 });
@@ -186,15 +202,29 @@ onMounted(async () => {
 <style scoped>
 .chat-container {
   display: flex;
-  height: calc(100vh - 56px); /* Adjust based on your navbar height */
+  height: calc(100vh - 76px); /* Adjust based on your navbar height */
   overflow: hidden;
 }
 
 .channel-sidebar {
   width: 250px;
   background-color: var(--bs-dark-bg-subtle);
-  border-end-color: var(--bs-border-color) !important;
   height: 100%;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 767.98px) {
+  .channel-sidebar {
+    position: fixed;
+    left: 0;
+    top: 64px; /* Adjust based on your navbar height */
+    z-index: 1030;
+    height: calc(100vh - 56px);
+  }
+
+  .sidebar-hidden {
+    transform: translateX(-100%);
+  }
 }
 
 .message-area {
