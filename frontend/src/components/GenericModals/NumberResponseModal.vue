@@ -14,6 +14,9 @@
         @keyup.enter="onSave"
         @input="validateInput"
       />
+      <BFormText v-if="helpText">
+        {{ helpText }}
+      </BFormText>
       <BFormInvalidFeedback :state="isValid">
         Value must be {{ min !== undefined ? `at least ${min}` : "valid" }}
       </BFormInvalidFeedback>
@@ -36,6 +39,7 @@ const props = defineProps<{
   presetValue?: number;
   min?: number;
   placeholder?: string;
+  helpText?: string;
 }>();
 
 const emit = defineEmits<{

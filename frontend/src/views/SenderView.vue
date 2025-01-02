@@ -16,6 +16,16 @@
       @save="onUrlChange"
     ></TextResponseModal>
 
+    <NumberResponseModal
+      v-model="showSplitLimitModal"
+      :title="'Edit Split Limit'"
+      :preset-value="currentEditSender?.splitLimit"
+      :min="0"
+      :placeholder="'Enter split limit (0 for no splitting)'"
+      :help-text="'Maximum number of characters per message. Messages longer than this will be split. Set to 0 to disable splitting. Example: Use 1000 for Telegram\'s character limit.'"
+      @save="onSplitLimitChange"
+    />
+
     <ChannelSelectionModal
       v-model="showChannelModal"
       :preset-channels="currentManageSender?.channel"
@@ -96,6 +106,20 @@
       <template #cell(sendurl)="row">
         {{ maskSendUrl(row.item.sendurl) }}
       </template>
+      <template #cell(splitLimit)="row">
+        <div class="d-flex align-items-center">
+          {{ row.item.splitLimit || "No splitting" }}
+          <BButton
+            size="sm"
+            variant="link"
+            class="p-0 ms-1"
+            v-b-tooltip.hover
+            title="Maximum characters per message. Messages longer than this will be split into multiple messages. Set to 0 to disable splitting."
+          >
+            <IBiInfoCircle />
+          </BButton>
+        </div>
+      </template>
       <template #cell(actions)="row">
         <BButton
           size="sm"
@@ -134,6 +158,20 @@
           Edit URL
         </BButton>
 
+        <BButton
+          size="sm"
+          variant="primary"
+          class="me-1"
+          @click="
+            () => {
+              currentEditSender = row.item;
+              showSplitLimitModal = true;
+            }
+          "
+        >
+          Edit Split Limit
+        </BButton>
+
         <BButton size="sm" variant="info" @click="openChannelModal(row.item)">
           Manage Channels
         </BButton>
@@ -144,6 +182,7 @@
 
 <script setup lang="ts">
 import ChannelSelectionModal from "@/components/GenericModals/ChannelSelectionModal.vue";
+import NumberResponseModal from "@/components/GenericModals/NumberResponseModal.vue";
 import TextResponseModal from "@/components/GenericModals/TextResponseModal.vue";
 import { usePb } from "@/composeables/usePb";
 import type {
@@ -160,6 +199,7 @@ import { onMounted, ref } from "vue";
 
 const showTextResponseModal = ref(false);
 const showUrlModal = ref(false);
+const showSplitLimitModal = ref(false);
 const currentEditSender = ref<SenderResponse | null>(null);
 
 const onNameChange = async (newName: string | null) => {
@@ -229,6 +269,34 @@ const onUrlChange = async (newUrl: string | null) => {
         props: {
           title: "Error",
           body: "Failed to update Send URL",
+          variant: "danger",
+        },
+      });
+    }
+  }
+};
+
+const onSplitLimitChange = async (newLimit: number | null) => {
+  if (currentEditSender.value) {
+    try {
+      await pb.collection("sender").update(currentEditSender.value.id, {
+        splitLimit: newLimit,
+      });
+
+      toast.show?.({
+        props: {
+          title: "Success",
+          body: "Split limit updated successfully",
+          variant: "success",
+        },
+      });
+
+      await fetchSenders();
+    } catch (error) {
+      toast.show?.({
+        props: {
+          title: "Error",
+          body: "Failed to update split limit",
           variant: "danger",
         },
       });
@@ -321,6 +389,7 @@ const createSender = async () => {
 const sortFields: Exclude<TableFieldRaw<SenderResponse>, string>[] = [
   { key: "name", label: "Name", sortable: true },
   { key: "sendurl", label: "Send URL", sortable: true },
+  { key: "splitLimit", label: "Split Limit", sortable: true },
   { key: "channels", label: "Channels" },
   { key: "actions", label: "Actions" },
 ];
@@ -407,5 +476,9 @@ code {
   padding: 2px 4px;
   border-radius: 4px;
   font-size: 90%;
+}
+.bi-info-circle {
+  font-size: 0.875rem;
+  color: #6c757d;
 }
 </style>

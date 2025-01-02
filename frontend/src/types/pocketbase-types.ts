@@ -135,6 +135,7 @@ export type SenderRecord = {
 	name: string
 	owner: RecordIdString
 	sendurl: string
+	splitLimit?: number
 	updated?: IsoDateString
 }
 
