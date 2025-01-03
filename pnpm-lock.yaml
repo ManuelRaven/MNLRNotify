@@ -47,13 +47,13 @@ importers:
         version: 22.0.0
       '@types/node':
         specifier: ^22.9.3
-        version: 22.10.4
+        version: 22.10.5
       '@vite-pwa/assets-generator':
         specifier: ^0.2.6
         version: 0.2.6
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
-        version: 5.2.1(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
+        version: 5.2.1(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
       '@vue/compiler-sfc':
         specifier: ^3.5.13
         version: 3.5.13
@@ -83,13 +83,13 @@ importers:
         version: 0.28.0(@babel/parser@7.26.3)(rollup@2.79.2)(vue@3.5.13(typescript@5.7.2))
       vite:
         specifier: ^6.0.1
-        version: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+        version: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
       vite-plugin-pwa:
         specifier: ^0.21.1
-        version: 0.21.1(@vite-pwa/assets-generator@0.2.6)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
+        version: 0.21.1(@vite-pwa/assets-generator@0.2.6)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
       vite-plugin-vue-devtools:
         specifier: ^7.6.5
-        version: 7.6.8(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
+        version: 7.6.8(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
       vue-tsc:
         specifier: ^2.1.10
         version: 2.2.0(typescript@5.7.2)
@@ -1045,8 +1045,8 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
-  '@types/node@22.10.4':
-    resolution: {integrity: sha512-99l6wv4HEzBQhvaU/UGoeBoCK61SCROQaCCGyQSgX2tEQ3rKkNZ2S7CEWnS/4s1LV+8ODdK21UeyR1fHP2mXug==}
+  '@types/node@22.10.5':
+    resolution: {integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -1965,8 +1965,8 @@ packages:
   is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
 
-  is-async-function@2.0.0:
-    resolution: {integrity: sha512-Y1JXKrfykRJGdlDwdKlLpLyMIiWqWvuSd17TvZk68PLAOGOoF4Xyav1z0Xhoi+gCYjZVeC5SI+hYFOfvXmGRCA==}
+  is-async-function@2.1.0:
+    resolution: {integrity: sha512-GExz9MtyhlZyXYLxzlJRj5WUCE661zhDa1Yna52CN57AJsymh+DvXXjyveSioqSRdxvUrdKdvqB1b5cVKsNpWQ==}
     engines: {node: '>= 0.4'}
 
   is-bigint@1.1.0:
@@ -2572,8 +2572,8 @@ packages:
   regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
 
-  regexp.prototype.flags@1.5.3:
-    resolution: {integrity: sha512-vqlC04+RQoFalODCbCumG2xIOvapzVMHwsyIGM/SIE8fRhFFsXeH8/QQ+s0T0kDAhKc4k30s73/0ydkHQz6HlQ==}
+  regexp.prototype.flags@1.5.4:
+    resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
   regexpu-core@6.2.0:
@@ -4295,7 +4295,7 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@types/node@22.10.4':
+  '@types/node@22.10.5':
     dependencies:
       undici-types: 6.20.0
 
@@ -4314,9 +4314,9 @@ snapshots:
       sharp-ico: 0.1.5
       unconfig: 0.3.13
 
-  '@vitejs/plugin-vue@5.2.1(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))':
+  '@vitejs/plugin-vue@5.2.1(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))':
     dependencies:
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
       vue: 3.5.13(typescript@5.7.2)
 
   '@volar/language-core@2.4.11':
@@ -4418,14 +4418,14 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
-  '@vue/devtools-core@7.6.8(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))':
+  '@vue/devtools-core@7.6.8(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))':
     dependencies:
       '@vue/devtools-kit': 7.6.8
       '@vue/devtools-shared': 7.6.8
       mitt: 3.0.1
       nanoid: 5.0.9
       pathe: 1.1.2
-      vite-hot-client: 0.2.4(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))
+      vite-hot-client: 0.2.4(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))
       vue: 3.5.13(typescript@5.7.2)
     transitivePeerDependencies:
       - vite
@@ -5049,7 +5049,7 @@ snapshots:
       object-keys: 1.1.1
       object.assign: 4.1.7
       own-keys: 1.0.1
-      regexp.prototype.flags: 1.5.3
+      regexp.prototype.flags: 1.5.4
       safe-array-concat: 1.1.3
       safe-push-apply: 1.0.0
       safe-regex-test: 1.1.0
@@ -5417,9 +5417,12 @@ snapshots:
 
   is-arrayish@0.3.2: {}
 
-  is-async-function@2.0.0:
+  is-async-function@2.1.0:
     dependencies:
+      call-bound: 1.0.3
+      get-proto: 1.0.1
       has-tostringtag: 1.0.2
+      safe-regex-test: 1.1.0
 
   is-bigint@1.1.0:
     dependencies:
@@ -6017,11 +6020,13 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
 
-  regexp.prototype.flags@1.5.3:
+  regexp.prototype.flags@1.5.4:
     dependencies:
       call-bind: 1.0.8
       define-properties: 1.2.1
       es-errors: 1.3.0
+      get-proto: 1.0.1
+      gopd: 1.2.0
       set-function-name: 2.0.2
 
   regexpu-core@6.2.0:
@@ -6326,7 +6331,7 @@ snapshots:
       gopd: 1.2.0
       has-symbols: 1.1.0
       internal-slot: 1.1.0
-      regexp.prototype.flags: 1.5.3
+      regexp.prototype.flags: 1.5.4
       set-function-name: 2.0.2
       side-channel: 1.1.0
 
@@ -6619,11 +6624,11 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite-hot-client@0.2.4(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)):
+  vite-hot-client@0.2.4(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)):
     dependencies:
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
 
-  vite-plugin-inspect@0.8.9(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)):
+  vite-plugin-inspect@0.8.9(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)):
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.3(rollup@2.79.2)
@@ -6634,17 +6639,17 @@ snapshots:
       perfect-debounce: 1.0.0
       picocolors: 1.1.1
       sirv: 3.0.0
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
 
-  vite-plugin-pwa@0.21.1(@vite-pwa/assets-generator@0.2.6)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(workbox-build@7.3.0)(workbox-window@7.3.0):
+  vite-plugin-pwa@0.21.1(@vite-pwa/assets-generator@0.2.6)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(workbox-build@7.3.0)(workbox-window@7.3.0):
     dependencies:
       debug: 4.4.0
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.10
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
       workbox-build: 7.3.0
       workbox-window: 7.3.0
     optionalDependencies:
@@ -6652,23 +6657,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-vue-devtools@7.6.8(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2)):
+  vite-plugin-vue-devtools@7.6.8(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
-      '@vue/devtools-core': 7.6.8(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
+      '@vue/devtools-core': 7.6.8(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
       '@vue/devtools-kit': 7.6.8
       '@vue/devtools-shared': 7.6.8
       execa: 9.5.2
       sirv: 3.0.0
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
-      vite-plugin-inspect: 0.8.9(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))
-      vite-plugin-vue-inspector: 5.3.1(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0))
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
+      vite-plugin-inspect: 0.8.9(rollup@2.79.2)(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))
+      vite-plugin-vue-inspector: 5.3.1(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0))
     transitivePeerDependencies:
       - '@nuxt/kit'
       - rollup
       - supports-color
       - vue
 
-  vite-plugin-vue-inspector@5.3.1(vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)):
+  vite-plugin-vue-inspector@5.3.1(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)):
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-proposal-decorators': 7.25.9(@babel/core@7.26.0)
@@ -6679,17 +6684,17 @@ snapshots:
       '@vue/compiler-dom': 3.5.13
       kolorist: 1.8.0
       magic-string: 0.30.15
-      vite: 6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0)
+      vite: 6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite@6.0.7(@types/node@22.10.4)(jiti@1.21.7)(terser@5.37.0):
+  vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(terser@5.37.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.4.49
       rollup: 4.29.1
     optionalDependencies:
-      '@types/node': 22.10.4
+      '@types/node': 22.10.5
       fsevents: 2.3.3
       jiti: 1.21.7
       terser: 5.37.0
@@ -6751,7 +6756,7 @@ snapshots:
       call-bound: 1.0.3
       function.prototype.name: 1.1.8
       has-tostringtag: 1.0.2
-      is-async-function: 2.0.0
+      is-async-function: 2.1.0
       is-date-object: 1.1.0
       is-finalizationregistry: 1.1.1
       is-generator-function: 1.1.0
