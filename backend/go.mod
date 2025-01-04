@@ -5,7 +5,7 @@ go 1.23.1
 require (
 	github.com/containrrr/shoutrrr v0.8.0
 	github.com/pocketbase/dbx v1.11.0
-	github.com/pocketbase/pocketbase v0.24.0
+	github.com/pocketbase/pocketbase v0.24.1
 )
 
 require (
