@@ -36,7 +36,9 @@
       <template #button-content>
         <em>{{ auth.authModel.value?.email }}</em>
       </template>
-      <BDropdownItem href="#">Profile</BDropdownItem>
+      <BDropdownItem exact-active-class="active" :to="{ name: 'settings' }"
+        >Settings</BDropdownItem
+      >
       <BDropdownItem @click="logout">Sign Out</BDropdownItem>
     </BNavItemDropdown>
     <BNavItem disabled>v{{ version }}</BNavItem>

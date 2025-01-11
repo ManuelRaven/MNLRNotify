@@ -72,6 +72,11 @@ const router = createRouter({
           name: "chat",
           component: () => import("../views/MessageChatView.vue"),
         },
+        {
+          path: "/settings",
+          name: "settings",
+          component: () => import("../views/ProfileSettingsView.vue"),
+        },
       ],
     },
     {

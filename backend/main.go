@@ -39,6 +39,7 @@ func main() {
 	app.useCronCleanupMessages()
 	app.useGotifyEndpoint()
 	app.useNtfyEndpoint()
+	app.useWebPushNotifications()
 
 	log.Fatal(app.pb.Start())
 }
