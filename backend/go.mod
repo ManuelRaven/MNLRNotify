@@ -6,7 +6,7 @@ require (
 	github.com/SherClockHolmes/webpush-go v1.3.0
 	github.com/containrrr/shoutrrr v0.8.0
 	github.com/pocketbase/dbx v1.11.0
-	github.com/pocketbase/pocketbase v0.24.0
+	github.com/pocketbase/pocketbase v0.24.2
 )
 
 require (
