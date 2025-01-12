@@ -1,9 +1,11 @@
-import type { UsersRecord } from "./pocketbase-types";
+import type { UsersRecord, WebpushDevicesRecord } from "./pocketbase-types";
 
 // type based on UserRecord but make the id and tokenKey optional
 export type UserRequest = Omit<UsersRecord, "id" | "tokenKey"> & {
   passwordConfirm: string;
 };
+
+export type WebpushDeviceRequest = Omit<WebpushDevicesRecord, "id">;
 
 export type AuthStoreUserRecord = Omit<UsersRecord, "password" | "tokenKey">;
 

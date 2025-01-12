@@ -1,13 +1,45 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
+	"github.com/SherClockHolmes/webpush-go"
 	"github.com/containrrr/shoutrrr"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/core"
 )
+
+// DeliveryResult represents the result of a message delivery attempt
+type DeliveryResult struct {
+	State   string
+	Message string
+}
+
+type WebPushMessage struct {
+	ChannelName string `json:"channelName"`
+	Message     string `json:"message"`
+}
+
+// Append combines another delivery result with the current one
+func (dr *DeliveryResult) Append(other DeliveryResult) {
+	if other.State == "failure" {
+		dr.State = "failure"
+	}
+	if dr.Message != "" && other.Message != "" {
+		dr.Message += "\n---\n"
+	}
+	dr.Message += other.Message
+}
+
+// NewDeliveryResult creates a new success result
+func NewDeliveryResult() DeliveryResult {
+	return DeliveryResult{
+		State:   "success",
+		Message: "",
+	}
+}
 
 // Helper function to split message into chunks
 func splitMessage(message string, limit int) []string {
@@ -27,68 +59,147 @@ func splitMessage(message string, limit int) []string {
 	return chunks
 }
 
+func (app *application) sendViaWebPush(channelId string, messageText string) DeliveryResult {
+
+	webpushDevicesRecords, err := app.pb.FindRecordsByFilter(
+		"webpushDevices",
+		"channel ~ {:channelid}",
+		"-created",
+		999999,
+		0,
+		dbx.Params{"channelid": channelId},
+	)
+
+	// Retrieve channel name
+
+	if err != nil {
+		return DeliveryResult{"failure", "Error finding webpush devices: " + err.Error()}
+	}
+	channelRecord, _ := app.pb.FindFirstRecordByData("channel", "id", channelId)
+	channelName := channelRecord.GetString("name")
+
+	// Build Push Message
+	pushMessage := WebPushMessage{
+		ChannelName: channelName,
+		Message:     messageText,
+	}
+
+	jsonMessage, _ := json.Marshal(pushMessage)
+
+	record, _ := app.pb.FindFirstRecordByData("ApplicationKV", "key", "vapid")
+	vapidKeys := record.GetString("value")
+
+	var vapidKeysMap map[string]string
+	json.Unmarshal([]byte(vapidKeys), &vapidKeysMap)
+
+	for _, record := range webpushDevicesRecords {
+
+		// Retrieve subscription url
+		deviceSubscription := record.GetString("subscription")
+		deviceName := record.GetString("Name")
+		owner := record.GetString("owner")
+
+		// Retrieve owner mail
+		ownerRecord, _ := app.pb.FindFirstRecordByData("users", "id", owner)
+		ownerMail := ownerRecord.GetString("email")
+
+		fmt.Println("Sending to device: ", deviceName, ownerMail)
+		s := &webpush.Subscription{}
+		json.Unmarshal([]byte(deviceSubscription), s)
+		resp, err := webpush.SendNotification(jsonMessage, s, &webpush.Options{
+			Subscriber:      ownerMail,
+			VAPIDPublicKey:  vapidKeysMap["publicKey"],
+			VAPIDPrivateKey: vapidKeysMap["privateKey"],
+			TTL:             30,
+		})
+		if err != nil {
+			// Error Message with device name
+			return DeliveryResult{"failure", deviceName + ": " + err.Error()}
+		}
+		defer resp.Body.Close()
+		return DeliveryResult{"success", deviceName + ": Webpush notification sent successfully"}
+	}
+	return DeliveryResult{"success", "No webpush devices found"}
+}
+
+// sendViaShoutrrrr handles sender retrieval and message sending for Shoutrrr
+func (app *application) sendViaShoutrrrr(channelId string, messageText string) DeliveryResult {
+	result := NewDeliveryResult()
+
+	senderRecords, err := app.pb.FindRecordsByFilter(
+		"sender",
+		"channel ~ {:channelid}",
+		"-created",
+		999999,
+		0,
+		dbx.Params{"channelid": channelId},
+	)
+	if err != nil {
+		result.State = "failure"
+		result.Message = "Error finding senders: " + err.Error()
+		return result
+	}
+
+	for _, record := range senderRecords {
+		senderName := record.GetString("name")
+		sendurl := record.GetString("sendurl")
+		splitLimit := record.GetInt("splitLimit")
+
+		messageParts := splitMessage(messageText, splitLimit)
+
+		for i, part := range messageParts {
+			err := shoutrrr.Send(sendurl, part)
+			if err != nil {
+				result.Message += senderName + ": Part " + fmt.Sprint(i+1) + " - " + err.Error() + "\n\n"
+				result.State = "failure"
+			} else {
+				result.Message += senderName + ": Part " + fmt.Sprint(i+1) + " - Message sent successfully\n\n"
+			}
+		}
+	}
+
+	return result
+}
+
+// sendMessage sends a message using the specified providers
+func (app *application) sendMessage(providers []string, channelId string, message string) DeliveryResult {
+	result := NewDeliveryResult()
+
+	for _, provider := range providers {
+		var providerResult DeliveryResult
+		switch provider {
+		case "shoutrrr":
+			providerResult = app.sendViaShoutrrrr(channelId, message)
+		case "webpush":
+			providerResult = app.sendViaWebPush(channelId, message)
+		default:
+			providerResult = DeliveryResult{"failure", fmt.Sprintf("unknown provider: %s", provider)}
+		}
+		result.Append(providerResult)
+	}
+
+	return result
+}
+
 func (app *application) useOnMessage() {
-	// fires only for "users" and "articles" records
 	app.pb.OnRecordAfterCreateSuccess("message").BindFunc(func(e *core.RecordEvent) error {
-		// e.App
-		// e.Record
-
-		var deliveryMessageLog string = ""
-		var deliveryState string = "success"
-
-		// Expand the record to include the "channel" field
 		channelId := e.Record.Get("channel").(string)
 		if channelId == "" {
 			log.Println("channelId is empty")
+			return e.Next()
 		}
 
-		records, err := app.pb.FindRecordsByFilter(
-			"sender",                           // collection
-			"channel ~ {:channelid}",           // filter
-			"-created",                         // sort
-			999999,                             // limit
-			0,                                  // offset
-			dbx.Params{"channelid": channelId}, // optional filter params
-		)
-		if err != nil {
-			log.Println("error finding records", err)
-		}
+		messageText := e.Record.GetString("text")
+		// Support multiple providers
+		providers := []string{"shoutrrr", "webpush"}
+		result := app.sendMessage(providers, channelId, messageText)
 
-		for _, record := range records {
-			var senderName = record.GetString("name")
-			log.Println("Send Message to Sender: " + senderName)
-			var sendurl = record.GetString("sendurl")
-
-			// Get splitLimit from sender record
-			splitLimit := record.GetInt("splitLimit")
-			messageText := e.Record.GetString("text")
-
-			// Split message if necessary
-			messageParts := splitMessage(messageText, splitLimit)
-
-			for i, part := range messageParts {
-
-				err := shoutrrr.Send(sendurl, part)
-				if err != nil {
-					log.Println("error sending message part", i+1, err)
-					deliveryMessageLog += senderName + ": Part " + fmt.Sprint(i+1) + " - " + err.Error() + "\n\n"
-					deliveryState = "failure"
-				} else {
-					log.Println("Message part", i+1, "sent successfully")
-					deliveryMessageLog += senderName + ": Part " + fmt.Sprint(i+1) + " - Message sent successfully\n\n"
-				}
-			}
-
-			// Update the deliveryState and deliveryMessageLog
-			e.Record.Set("deliveryState", deliveryState)
-			e.Record.Set("deliveryMessage", deliveryMessageLog)
-			err = app.pb.Save(e.Record)
-			if err != nil {
-				log.Println("error saving record", err)
-			}
+		e.Record.Set("deliveryState", result.State)
+		e.Record.Set("deliveryMessage", result.Message)
+		if err := app.pb.Save(e.Record); err != nil {
+			log.Println("error saving record", err)
 		}
 
 		return e.Next()
 	})
-
 }

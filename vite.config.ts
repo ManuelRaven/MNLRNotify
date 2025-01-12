@@ -33,10 +33,29 @@ export default defineConfig(({ mode }) => {
           type: "module",
           enabled: true,
         },
-        injectRegister: false,
-        manifest: false,
-        injectManifest: {
-          injectionPoint: undefined,
+        injectRegister: "auto",
+        manifest: {
+          name: "MNLRNotify",
+          short_name: "MNLRNotify",
+          description: "MNLRNotify",
+          theme_color: "#ffffff",
+          icons: [
+            {
+              src: "pwa-64x64.png",
+              sizes: "64x64",
+              type: "image/png",
+            },
+            {
+              src: "pwa-192x192.png",
+              sizes: "192x192",
+              type: "image/png",
+            },
+            {
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+            },
+          ],
         },
       }),
     ],
@@ -49,6 +68,10 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
+          target: backendUrl,
+          changeOrigin: true,
+        },
+        "/eapi": {
           target: backendUrl,
           changeOrigin: true,
         },

@@ -6,6 +6,7 @@
     "frontend/src/**/*",
     "frontend/src/**/*.vue"
   ],
+  "resolveJsonModule": true,
   "exclude": [
     "frontend/src/**/__tests__/*"
   ],

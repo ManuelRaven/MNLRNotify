@@ -6,6 +6,7 @@ import type PocketBase from 'pocketbase'
 import type { RecordService } from 'pocketbase'
 
 export enum Collections {
+	ApplicationKV = "ApplicationKV",
 	Authorigins = "_authOrigins",
 	Externalauths = "_externalAuths",
 	Mfas = "_mfas",
@@ -16,6 +17,7 @@ export enum Collections {
 	Reciever = "reciever",
 	Sender = "sender",
 	Users = "users",
+	WebpushDevices = "webpushDevices",
 }
 
 // Alias types for improved usability
@@ -39,6 +41,14 @@ export type AuthSystemFields<T = never> = {
 } & BaseSystemFields<T>
 
 // Record types for each collection
+
+export type ApplicationKVRecord<Tvalue = unknown> = {
+	created?: IsoDateString
+	id: string
+	key: string
+	updated?: IsoDateString
+	value: null | Tvalue
+}
 
 export type AuthoriginsRecord = {
 	collectionRef: string
@@ -152,7 +162,18 @@ export type UsersRecord = {
 	verified?: boolean
 }
 
+export type WebpushDevicesRecord<Tsubscription = unknown> = {
+	Name: string
+	channel?: RecordIdString[]
+	created?: IsoDateString
+	id: string
+	owner: RecordIdString
+	subscription: null | Tsubscription
+	updated?: IsoDateString
+}
+
 // Response types include system fields and match responses from the PocketBase API
+export type ApplicationKVResponse<Tvalue = unknown, Texpand = unknown> = Required<ApplicationKVRecord<Tvalue>> & BaseSystemFields<Texpand>
 export type AuthoriginsResponse<Texpand = unknown> = Required<AuthoriginsRecord> & BaseSystemFields<Texpand>
 export type ExternalauthsResponse<Texpand = unknown> = Required<ExternalauthsRecord> & BaseSystemFields<Texpand>
 export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemFields<Texpand>
@@ -163,10 +184,12 @@ export type MessageResponse<Texpand = unknown> = Required<MessageRecord> & BaseS
 export type RecieverResponse<Texpand = unknown> = Required<RecieverRecord> & BaseSystemFields<Texpand>
 export type SenderResponse<Texpand = unknown> = Required<SenderRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
+export type WebpushDevicesResponse<Tsubscription = unknown, Texpand = unknown> = Required<WebpushDevicesRecord<Tsubscription>> & BaseSystemFields<Texpand>
 
 // Types containing all Records and Responses, useful for creating typing helper functions
 
 export type CollectionRecords = {
+	ApplicationKV: ApplicationKVRecord
 	_authOrigins: AuthoriginsRecord
 	_externalAuths: ExternalauthsRecord
 	_mfas: MfasRecord
@@ -177,9 +200,11 @@ export type CollectionRecords = {
 	reciever: RecieverRecord
 	sender: SenderRecord
 	users: UsersRecord
+	webpushDevices: WebpushDevicesRecord
 }
 
 export type CollectionResponses = {
+	ApplicationKV: ApplicationKVResponse
 	_authOrigins: AuthoriginsResponse
 	_externalAuths: ExternalauthsResponse
 	_mfas: MfasResponse
@@ -190,12 +215,14 @@ export type CollectionResponses = {
 	reciever: RecieverResponse
 	sender: SenderResponse
 	users: UsersResponse
+	webpushDevices: WebpushDevicesResponse
 }
 
 // Type for usage with type asserted PocketBase instance
 // https://github.com/pocketbase/js-sdk#specify-typescript-definitions
 
 export type TypedPocketBase = PocketBase & {
+	collection(idOrName: 'ApplicationKV'): RecordService<ApplicationKVResponse>
 	collection(idOrName: '_authOrigins'): RecordService<AuthoriginsResponse>
 	collection(idOrName: '_externalAuths'): RecordService<ExternalauthsResponse>
 	collection(idOrName: '_mfas'): RecordService<MfasResponse>
@@ -206,4 +233,5 @@ export type TypedPocketBase = PocketBase & {
 	collection(idOrName: 'reciever'): RecordService<RecieverResponse>
 	collection(idOrName: 'sender'): RecordService<SenderResponse>
 	collection(idOrName: 'users'): RecordService<UsersResponse>
+	collection(idOrName: 'webpushDevices'): RecordService<WebpushDevicesResponse>
 }
