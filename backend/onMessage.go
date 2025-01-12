@@ -110,7 +110,7 @@ func (app *application) sendViaWebPush(channelId string, messageText string) Del
 			Subscriber:      ownerMail,
 			VAPIDPublicKey:  vapidKeysMap["publicKey"],
 			VAPIDPrivateKey: vapidKeysMap["privateKey"],
-			TTL:             30,
+			TTL:             60 * 60,
 		})
 
 		deviceResult := DeliveryResult{}
