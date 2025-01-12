@@ -15,6 +15,9 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'senders' }"
       >Senders</BNavItem
     >
+    <BNavItem exact exact-active-class="active" :to="{ name: 'webpush' }"
+      >WebPush</BNavItem
+    >
     <BNavItem exact exact-active-class="active" :to="{ name: 'messages' }"
       >Messages</BNavItem
     >
@@ -36,9 +39,9 @@
       <template #button-content>
         <em>{{ auth.authModel.value?.email }}</em>
       </template>
-      <BDropdownItem exact-active-class="active" :to="{ name: 'settings' }"
+      <!-- <BDropdownItem exact-active-class="active" :to="{ name: 'settings' }"
         >Settings</BDropdownItem
-      >
+      > -->
       <BDropdownItem @click="logout">Sign Out</BDropdownItem>
     </BNavItemDropdown>
     <BNavItem disabled>v{{ version }}</BNavItem>

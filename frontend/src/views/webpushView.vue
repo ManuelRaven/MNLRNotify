@@ -25,13 +25,26 @@
       </BFormText>
     </BFormGroup>
     <div class="d-grid gap-2 mb-4">
+      <BAlert
+        v-if="isRegistering"
+        :model-value="true"
+        variant="info"
+        :dismissible="false"
+        class="mb-3"
+      >
+        <p>
+          Your browser may ask for permission to enable notifications. Please
+          check your browser's address bar or notification toggle prompt.
+        </p>
+      </BAlert>
       <BButton
         v-if="!isSubscribed"
         variant="primary"
-        :disabled="!deviceNameValid"
+        :disabled="!deviceNameValid || isRegistering"
         @click="registerDevice"
       >
-        Register Device
+        <BSpinner v-if="isRegistering" small class="me-2"></BSpinner>
+        {{ isRegistering ? "Registering..." : "Register Device" }}
       </BButton>
       <BButton v-else variant="danger" @click="unregisterDevice">
         Unregister This Device
@@ -119,6 +132,7 @@ const devices = ref<
 const isSubscribed = ref(false);
 const showChannelModal = ref(false);
 const currentManageDevice = ref<WebpushDevicesResponse | null>(null);
+const isRegistering = ref(false);
 
 const currentDevice = computed(() => {
   if (!currentEndpoint.value) return null;
@@ -229,6 +243,7 @@ const registerDeviceInDatabase = async (subscription: PushSubscription) => {
 
     await pb.collection("webpushDevices").create(data);
     await loadDevices();
+    await updateCurrentEndpoint();
   } catch (error) {
     console.error("Failed to register device:", error);
     throw new Error("Failed to register device in database");
@@ -271,11 +286,16 @@ const disablePushNotifications = async () => {
 };
 
 const registerDevice = async () => {
+  if (isRegistering.value) return;
+
   try {
+    isRegistering.value = true;
     await registerPushNotifications();
     isSubscribed.value = true;
   } catch (error: any) {
     errorMessage.value = error.message || "Failed to register device";
+  } finally {
+    isRegistering.value = false;
   }
 };
 

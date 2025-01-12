@@ -4,6 +4,7 @@ import type {
   ChannelResponse,
   RecieverResponse,
   SenderResponse,
+  WebpushDevicesResponse,
 } from "@/types/pocketbase-types";
 import { Background } from "@vue-flow/background";
 import { useVueFlow, VueFlow } from "@vue-flow/core";
@@ -17,10 +18,11 @@ const { nodes, edges, addNodes, addEdges, setViewport } = useVueFlow();
 // Fetch data and create flow
 const createFlow = async () => {
   try {
-    const [receivers, channels, senders] = await Promise.all([
+    const [receivers, channels, senders, webpushDevices] = await Promise.all([
       pb.collection("reciever").getList<RecieverResponse>(1, 100),
       pb.collection("channel").getList<ChannelResponse>(1, 100),
       pb.collection("sender").getList<SenderResponse>(1, 100),
+      pb.collection("webpushDevices").getList<WebpushDevicesResponse>(1, 100),
     ]);
 
     // Create nodes
@@ -39,15 +41,35 @@ const createFlow = async () => {
       class: "channel-node",
     }));
 
+    // Calculate positions for bottom row (senders and webpush)
+    const bottomY = 700;
+    const spacing = 180; // Fixed smaller spacing instead of window-based calculation
+
+    const webpushNodes = webpushDevices.items.map((device, index) => ({
+      id: `webpush-${device.id}`,
+      position: { x: 100 + index * spacing, y: bottomY },
+      data: { label: "📱 " + device.Name },
+      type: "output",
+      class: "webpush-node",
+    }));
+
     const senderNodes = senders.items.map((sender, index) => ({
       id: `sender-${sender.id}`,
-      position: { x: 100 + index * 200, y: 700 }, // Changed y to bottom position
+      position: {
+        x: 100 + (index + webpushDevices.items.length) * spacing,
+        y: bottomY,
+      },
       data: { label: sender.name },
       type: "output",
       class: "sender-node",
     }));
 
-    addNodes([...receiverNodes, ...channelNodes, ...senderNodes]);
+    addNodes([
+      ...receiverNodes,
+      ...channelNodes,
+      ...webpushNodes,
+      ...senderNodes,
+    ]);
 
     // Create edges
     const receiverEdges = receivers.items.flatMap((receiver) =>
@@ -57,6 +79,16 @@ const createFlow = async () => {
         target: `channel-${channelId}`,
         animated: true,
         class: "receiver-edge",
+      }))
+    );
+
+    const webpushEdges = webpushDevices.items.flatMap((device) =>
+      (device.channel || []).map((channelId) => ({
+        id: `e-${channelId}-${device.id}`,
+        source: `channel-${channelId}`,
+        target: `webpush-${device.id}`,
+        animated: true,
+        class: "webpush-edge",
       }))
     );
 
@@ -70,10 +102,10 @@ const createFlow = async () => {
       }))
     );
 
-    addEdges([...receiverEdges, ...senderEdges]);
+    addEdges([...receiverEdges, ...webpushEdges, ...senderEdges]);
 
     // Center view
-    setViewport({ x: 0, y: 0, zoom: 0.8 });
+    setViewport({ x: 0, y: 0, zoom: 0.7 }); // Adjusted zoom to show all nodes
   } catch (error) {
     toast.show?.({
       props: {
@@ -140,6 +172,11 @@ onMounted(() => {
   color: white;
 }
 
+.webpush-node {
+  background-color: var(--bs-info);
+  color: white;
+}
+
 /* Edge styling */
 .receiver-edge {
   stroke: var(--bs-primary);
@@ -147,6 +184,10 @@ onMounted(() => {
 
 .sender-edge {
   stroke: var(--bs-success);
+}
+
+.webpush-edge {
+  stroke: var(--bs-info);
 }
 
 .vue-flow__node {

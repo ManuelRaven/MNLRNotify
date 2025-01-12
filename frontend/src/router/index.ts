@@ -73,9 +73,9 @@ const router = createRouter({
           component: () => import("../views/MessageChatView.vue"),
         },
         {
-          path: "/settings",
-          name: "settings",
-          component: () => import("../views/ProfileSettingsView.vue"),
+          path: "/webpush",
+          name: "webpush",
+          component: () => import("../views/webpushView.vue"),
         },
       ],
     },
