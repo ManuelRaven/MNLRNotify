@@ -77,6 +77,11 @@ const router = createRouter({
           name: "webpush",
           component: () => import("../views/webpushView.vue"),
         },
+        {
+          path: "/channelmutations",
+          name: "channel-mutations",
+          component: () => import("../views/ChannelMutationsView.vue"),
+        },
       ],
     },
     {

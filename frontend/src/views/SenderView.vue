@@ -472,10 +472,8 @@ onMounted(async () => {
 
 <style scoped>
 code {
-  background: #f8f9fa;
-  padding: 2px 4px;
+  background: var(--bs-dark-bg-subtle);
   border-radius: 4px;
-  font-size: 90%;
 }
 .bi-info-circle {
   font-size: 0.875rem;

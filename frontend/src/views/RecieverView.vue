@@ -36,7 +36,7 @@
           </p>
 
           <h6>Endpoint URL</h6>
-          <code class="d-block bg-light p-2 mb-3"> POST /message </code>
+          <pre class="mb-0"><code> POST /message </code></pre>
 
           <h6>Authentication</h6>
           <p>Use one of these authentication methods:</p>
@@ -432,13 +432,9 @@ onMounted(async () => {
 
 <style scoped>
 pre {
-  background: #f8f9fa;
+  background: var(--bs-dark-bg-subtle);
   padding: 1rem;
-  border-radius: 0.375rem;
-  margin: 0;
-}
-
-code {
-  color: #d63384;
+  border-radius: 4px;
+  margin: 1rem 0;
 }
 </style>

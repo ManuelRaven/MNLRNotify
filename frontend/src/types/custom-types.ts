@@ -1,4 +1,8 @@
-import type { UsersRecord, WebpushDevicesRecord } from "./pocketbase-types";
+import type {
+  ChannelMutationsRecord,
+  UsersRecord,
+  WebpushDevicesRecord,
+} from "./pocketbase-types";
 
 // type based on UserRecord but make the id and tokenKey optional
 export type UserRequest = Omit<UsersRecord, "id" | "tokenKey"> & {
@@ -9,13 +13,15 @@ export type WebpushDeviceRequest = Omit<WebpushDevicesRecord, "id">;
 
 export type AuthStoreUserRecord = Omit<UsersRecord, "password" | "tokenKey">;
 
-export type CreateChannelRequest = {
-  name: string;
-};
+export type ChannelMutationsRequest = Omit<ChannelMutationsRecord, "id">;
 
 export type CreateSenderRequest = {
   name: string;
   sendurl: string;
+};
+
+export type CreateChannelRequest = {
+  name: string;
 };
 
 export type ExpandChannelNameId = {
@@ -37,4 +43,11 @@ export type ExpandChannelNameIdSingle = {
     id: string;
     name: string;
   };
+};
+
+export type ExpandMutations = {
+  mutations: {
+    id: string;
+    name: string;
+  }[];
 };

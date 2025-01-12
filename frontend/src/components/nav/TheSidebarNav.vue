@@ -12,6 +12,12 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'channels' }"
       >Channels</BNavItem
     >
+    <BNavItem
+      exact
+      exact-active-class="active"
+      :to="{ name: 'channel-mutations' }"
+      >Channel Mutations</BNavItem
+    >
     <BNavItem exact exact-active-class="active" :to="{ name: 'senders' }"
       >Senders</BNavItem
     >

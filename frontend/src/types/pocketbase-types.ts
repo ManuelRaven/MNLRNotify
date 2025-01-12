@@ -13,6 +13,7 @@ export enum Collections {
 	Otps = "_otps",
 	Superusers = "_superusers",
 	Channel = "channel",
+	ChannelMutations = "channel_mutations",
 	Message = "message",
 	Reciever = "reciever",
 	Sender = "sender",
@@ -103,8 +104,23 @@ export type ChannelRecord = {
 	created?: IsoDateString
 	id: string
 	lifetime_seconds?: number
+	mutations?: RecordIdString[]
 	name: string
 	owner: RecordIdString
+	updated?: IsoDateString
+}
+
+export enum ChannelMutationsExecutorOptions {
+	"goja" = "goja",
+	"cmd" = "cmd",
+}
+export type ChannelMutationsRecord = {
+	created?: IsoDateString
+	executor: ChannelMutationsExecutorOptions
+	id: string
+	name: string
+	owner?: RecordIdString
+	script: string
 	updated?: IsoDateString
 }
 
@@ -180,6 +196,7 @@ export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemF
 export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
 export type ChannelResponse<Texpand = unknown> = Required<ChannelRecord> & BaseSystemFields<Texpand>
+export type ChannelMutationsResponse<Texpand = unknown> = Required<ChannelMutationsRecord> & BaseSystemFields<Texpand>
 export type MessageResponse<Texpand = unknown> = Required<MessageRecord> & BaseSystemFields<Texpand>
 export type RecieverResponse<Texpand = unknown> = Required<RecieverRecord> & BaseSystemFields<Texpand>
 export type SenderResponse<Texpand = unknown> = Required<SenderRecord> & BaseSystemFields<Texpand>
@@ -196,6 +213,7 @@ export type CollectionRecords = {
 	_otps: OtpsRecord
 	_superusers: SuperusersRecord
 	channel: ChannelRecord
+	channel_mutations: ChannelMutationsRecord
 	message: MessageRecord
 	reciever: RecieverRecord
 	sender: SenderRecord
@@ -211,6 +229,7 @@ export type CollectionResponses = {
 	_otps: OtpsResponse
 	_superusers: SuperusersResponse
 	channel: ChannelResponse
+	channel_mutations: ChannelMutationsResponse
 	message: MessageResponse
 	reciever: RecieverResponse
 	sender: SenderResponse
@@ -229,6 +248,7 @@ export type TypedPocketBase = PocketBase & {
 	collection(idOrName: '_otps'): RecordService<OtpsResponse>
 	collection(idOrName: '_superusers'): RecordService<SuperusersResponse>
 	collection(idOrName: 'channel'): RecordService<ChannelResponse>
+	collection(idOrName: 'channel_mutations'): RecordService<ChannelMutationsResponse>
 	collection(idOrName: 'message'): RecordService<MessageResponse>
 	collection(idOrName: 'reciever'): RecordService<RecieverResponse>
 	collection(idOrName: 'sender'): RecordService<SenderResponse>

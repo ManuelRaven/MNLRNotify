@@ -40,6 +40,7 @@ func main() {
 	app.useGotifyEndpoint()
 	app.useNtfyEndpoint()
 	app.useWebPushNotifications()
+	app.useChannelMutations()
 
 	log.Fatal(app.pb.Start())
 }
