@@ -60,6 +60,7 @@ func splitMessage(message string, limit int) []string {
 }
 
 func (app *application) sendViaWebPush(channelId string, messageText string) DeliveryResult {
+	result := NewDeliveryResult()
 
 	webpushDevicesRecords, err := app.pb.FindRecordsByFilter(
 		"webpushDevices",
@@ -70,15 +71,17 @@ func (app *application) sendViaWebPush(channelId string, messageText string) Del
 		dbx.Params{"channelid": channelId},
 	)
 
-	// Retrieve channel name
-
 	if err != nil {
 		return DeliveryResult{"failure", "Error finding webpush devices: " + err.Error()}
 	}
+
+	if len(webpushDevicesRecords) == 0 {
+		return DeliveryResult{"success", "No webpush devices found"}
+	}
+
 	channelRecord, _ := app.pb.FindFirstRecordByData("channel", "id", channelId)
 	channelName := channelRecord.GetString("name")
 
-	// Build Push Message
 	pushMessage := WebPushMessage{
 		ChannelName: channelName,
 		Message:     messageText,
@@ -93,13 +96,10 @@ func (app *application) sendViaWebPush(channelId string, messageText string) Del
 	json.Unmarshal([]byte(vapidKeys), &vapidKeysMap)
 
 	for _, record := range webpushDevicesRecords {
-
-		// Retrieve subscription url
 		deviceSubscription := record.GetString("subscription")
 		deviceName := record.GetString("Name")
 		owner := record.GetString("owner")
 
-		// Retrieve owner mail
 		ownerRecord, _ := app.pb.FindFirstRecordByData("users", "id", owner)
 		ownerMail := ownerRecord.GetString("email")
 
@@ -112,14 +112,18 @@ func (app *application) sendViaWebPush(channelId string, messageText string) Del
 			VAPIDPrivateKey: vapidKeysMap["privateKey"],
 			TTL:             30,
 		})
+
+		deviceResult := DeliveryResult{}
 		if err != nil {
-			// Error Message with device name
-			return DeliveryResult{"failure", deviceName + ": " + err.Error()}
+			deviceResult = DeliveryResult{"failure", deviceName + ": " + err.Error()}
+		} else {
+			deviceResult = DeliveryResult{"success", deviceName + ": Webpush notification sent successfully"}
+			resp.Body.Close()
 		}
-		defer resp.Body.Close()
-		return DeliveryResult{"success", deviceName + ": Webpush notification sent successfully"}
+		result.Append(deviceResult)
 	}
-	return DeliveryResult{"success", "No webpush devices found"}
+
+	return result
 }
 
 // sendViaShoutrrrr handles sender retrieval and message sending for Shoutrrr
