@@ -16,11 +16,14 @@ RUN CGO_ENABLED=0 go build -tags production -o mnlrbase
 
 # Deploy binary
 FROM alpine:latest AS runner
-WORKDIR /app
 
-COPY --from=builder-go /app/mnlrbase .
-RUN chmod +x /app/mnlrbase
+# Install CA certificates for HTTPS
+RUN apk --no-cache add ca-certificates
+
+# Copy the pre-built binary from GoReleaser
+COPY --from=builder-go /app/mnlrbase /mnlrnotify
+RUN chmod +x /mnlrnotify
 
 EXPOSE 8090
 
-CMD ["/app/mnlrbase", "serve", "--http=0.0.0.0:8090"]
+ENTRYPOINT ["/mnlrnotify", "serve", "--http=0.0.0.0:8090"]
