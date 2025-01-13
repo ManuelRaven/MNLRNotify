@@ -12,12 +12,25 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'channels' }"
       >Channels</BNavItem
     >
-    <BNavItem
+    <BNavItemDropdown
       exact
       exact-active-class="active"
       :to="{ name: 'channel-mutations' }"
-      >Channel Mutations</BNavItem
     >
+      <template #button-content> Channel Mutations </template>
+      <BDropdownItem
+        exact-active-class="active"
+        :to="{ name: 'channel-mutations' }"
+      >
+        List
+      </BDropdownItem>
+      <BDropdownItem
+        exact-active-class="active"
+        :to="{ name: 'channel-mutations-editor' }"
+      >
+        Editor
+      </BDropdownItem>
+    </BNavItemDropdown>
     <BNavItem exact exact-active-class="active" :to="{ name: 'senders' }"
       >Senders</BNavItem
     >

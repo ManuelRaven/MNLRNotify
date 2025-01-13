@@ -26,6 +26,12 @@ importers:
       bootswatch:
         specifier: ^5.3.3
         version: 5.3.3
+      monaco-editor:
+        specifier: ^0.52.2
+        version: 0.52.2
+      monaco-tree-editor:
+        specifier: ^1.1.6
+        version: 1.1.6(monaco-editor@0.52.2)(vue@3.5.13(typescript@5.7.3))
       pinia:
         specifier: ^2.2.6
         version: 2.3.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -2322,6 +2328,16 @@ packages:
 
   mlly@1.7.3:
     resolution: {integrity: sha512-xUsx5n/mN0uQf4V548PKQ+YShA4/IW0KI1dZhrNrPCLG+xizETbHTkOa1f8/xut9JRPp8kQuMnz0oqwkTiLo/A==}
+
+  monaco-editor@0.52.2:
+    resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
+
+  monaco-tree-editor@1.1.6:
+    resolution: {integrity: sha512-9fRaWZQsQOh4UWQqN3mMlyX3gyHZhfSAoBiMdde4WsnX3X0FwVP9QrNWH7Z35IHML5MLqLgGTIpXFe0NCDB4YA==}
+    engines: {node: '>=18.18.0'}
+    peerDependencies:
+      monaco-editor: '>=0.44.0'
+      vue: '>=3.3.4'
 
   mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
@@ -5800,6 +5816,14 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.2.1
       ufo: 1.5.4
+
+  monaco-editor@0.52.2: {}
+
+  monaco-tree-editor@1.1.6(monaco-editor@0.52.2)(vue@3.5.13(typescript@5.7.3)):
+    dependencies:
+      monaco-editor: 0.52.2
+      nanoid: 5.0.9
+      vue: 3.5.13(typescript@5.7.3)
 
   mrmime@2.0.0: {}
 

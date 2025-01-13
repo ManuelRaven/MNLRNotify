@@ -25,6 +25,8 @@
     "bootstrap": "^5.3.3",
     "bootstrap-vue-next": "^0.26.7",
     "bootswatch": "^5.3.3",
+    "monaco-editor": "^0.52.2",
+    "monaco-tree-editor": "^1.1.6",
     "pinia": "^2.2.6",
     "pocketbase": "^0.25.0",
     "vue": "^3.5.13",
