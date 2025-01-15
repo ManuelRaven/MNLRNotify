@@ -10,8 +10,6 @@ const auth = useAuth();
 onMounted(async () => {
   let health = await pb.health.check();
   console.log(health);
-  let authOptions = await auth.listAuthOptions();
-  console.log(authOptions);
 });
 </script>
 
