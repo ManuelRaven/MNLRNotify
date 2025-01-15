@@ -82,6 +82,11 @@ const router = createRouter({
           name: "channel-mutations",
           component: () => import("../views/ChannelMutationsView.vue"),
         },
+        {
+          path: "/channelmutations/editor",
+          name: "channel-mutations-editor",
+          component: () => import("../views/ScriptsView.vue"),
+        },
       ],
     },
     {
