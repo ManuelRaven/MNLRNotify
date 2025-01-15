@@ -25,6 +25,9 @@ export default defineConfig(({ mode }) => {
       }),
       vueDevTools(),
       VitePWA({
+        injectManifest: {
+          maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+        },
         srcDir: "frontend/src",
         filename: "service-worker.ts",
         strategies: "injectManifest",
