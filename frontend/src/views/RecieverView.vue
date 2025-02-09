@@ -227,7 +227,7 @@ const recievers = ref<RecieverResponse<ExpandChannelsNameId>[]>([]);
 
 const maskToken = (token?: string): string => {
   if (!token) return "";
-  return token.slice(0, 4) + "..." + token.slice(-4);
+  return token.slice(0, 2) + "..." + token.slice(-2);
 };
 
 const showTokens = ref<Record<string, boolean>>({});

@@ -41,6 +41,7 @@ func main() {
 	app.useNtfyEndpoint()
 	app.useWebPushNotifications()
 	app.useChannelMutations()
+	app.useonCreateReciever()
 
 	log.Fatal(app.pb.Start())
 }
