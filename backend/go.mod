@@ -8,7 +8,7 @@ require (
 	github.com/dop251/goja v0.0.0-20250125213203-5ef83b82af17
 	github.com/pocketbase/dbx v1.11.0
 	github.com/pocketbase/pocketbase v0.25.4
-	golang.org/x/exp v0.0.0-20250215185904-eff6e970281f
+	golang.org/x/exp v0.0.0-20250218142911-aa4b98e5adaa
 )
 
 require (
