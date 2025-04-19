@@ -63,6 +63,7 @@ export default defineConfig(({ mode }) => {
       }),
     ],
     build: {
+      chunkSizeWarningLimit: 8192,
       outDir: "./backend/dist",
       emptyOutDir: true,
     },

@@ -7,3 +7,4 @@ dist/*
 backend/dist
 dist/
 binary/
+frontend/public/themes/*

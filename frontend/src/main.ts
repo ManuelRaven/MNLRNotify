@@ -1,6 +1,5 @@
 import "bootstrap-vue-next/dist/bootstrap-vue-next.css";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootswatch/dist/united/bootstrap.min.css";
 import { createPinia } from "pinia";
 import { createApp } from "vue";
 import "./assets/main.css";

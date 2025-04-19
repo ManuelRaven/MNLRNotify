@@ -6,6 +6,13 @@
         <option value="dark">Dark</option>
       </BFormSelect>
     </BNavItem>
+    <BNavItem>
+      <BFormSelect v-model="selectedTheme" @change="changeTheme">
+        <option v-for="theme in availableThemes" :key="theme" :value="theme">
+          {{ theme.charAt(0).toUpperCase() + theme.slice(1) }}
+        </option>
+      </BFormSelect>
+    </BNavItem>
     <BNavItem exact exact-active-class="active" :to="{ name: 'home' }"
       >Home</BNavItem
     >
@@ -85,6 +92,11 @@ const mode = useColorMode({
   persist: true,
 });
 
+import { useThemeStore, availableThemes } from "@/stores/useThemeStore";
+
+const themeStore = useThemeStore();
+const selectedTheme = ref(themeStore.theme);
+
 watchEffect(() => {
   darkEnabled.value = mode.value === "dark";
 });
@@ -92,6 +104,13 @@ watchEffect(() => {
 const changeColor = () => {
   mode.value = mode.value === "dark" ? "light" : "dark";
 };
+
+const changeTheme = () => {
+  console.log("Changing theme to:", selectedTheme.value);
+
+  themeStore.changeTheme(selectedTheme.value);
+};
+
 const logout = async () => {
   await auth.logout();
   await router.replace("/login");
