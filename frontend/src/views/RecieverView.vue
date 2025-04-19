@@ -13,9 +13,8 @@
       :preset-channels="currentEditReciever?.channels"
       @save="updateRecieverChannels"
     />
-
     <BAccordion class="mb-3">
-      <BAccordionItem title="Endpoint Documentation">
+      <BAccordionItem title="ℹ️ Endpoint Documentation">
         <BNav tabs class="mb-3">
           <BNavItem
             :active="activeTab === 'gotify'"

@@ -73,6 +73,20 @@ const exampleFiles: Files = {
     content: "// Convert message to uppercase\nmessage.toUpperCase();",
     readonly: true,
   },
+  "VIRT:\\examples\\JavaScript Examples\\functions.js": {
+    isFile: true,
+    content: `
+const limitMessageLines = () => {
+var temp = message.split("\\n");
+var maxLines = 25;
+const newMessageArray = temp.slice(0,maxLines)
+return newMessageArray.join("\\n")
+}
+
+limitMessageLines()
+`,
+    readonly: true,
+  },
   "VIRT:\\examples\\JavaScript Examples\\json-manipulation.js": {
     isFile: true,
     content:

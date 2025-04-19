@@ -3,3 +3,9 @@ body,
 #app {
   height: 100%;
 }
+
+.accordion-button {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+
+}
