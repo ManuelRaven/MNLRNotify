@@ -1,8 +1,9 @@
 {
   "name": "mnlrbase",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
-  "type": "module",  "scripts": {
+  "type": "module",
+  "scripts": {
     "dev:client": "npm run copy-themes && vite dev",
     "dev:server": "cd backend && go run . --dir=../db serve",
     "dev:server:snapshot": "cd backend && go run . --dir=../db migrate collections",
