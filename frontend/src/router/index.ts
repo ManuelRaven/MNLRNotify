@@ -48,8 +48,8 @@ const router = createRouter({
           component: () => import("@/views/SenderView.vue"),
         },
         {
-          path: "/recievers",
-          name: "recievers",
+          path: "/Receivers",
+          name: "receivers",
           component: () => import("@/views/RecieverView.vue"),
         },
         {
