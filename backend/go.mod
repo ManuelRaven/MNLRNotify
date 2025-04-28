@@ -7,7 +7,7 @@ require (
 	github.com/containrrr/shoutrrr v0.8.0
 	github.com/dop251/goja v0.0.0-20250309171923-bcd7cc6bf64c
 	github.com/pocketbase/dbx v1.11.0
-	github.com/pocketbase/pocketbase v0.27.1
+	github.com/pocketbase/pocketbase v0.27.2
 	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0
 )
 
