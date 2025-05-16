@@ -21,7 +21,7 @@ func (app *application) useChannelMutations() {
 		messageText := e.Record.GetString("text")
 
 		// Process mutations in order
-		for i := 0; i < len(mutations); i++ {
+		for i := range mutations {
 			mutationRecord, err := app.pb.FindRecordById("channel_mutations", mutations[i])
 			if err != nil {
 				e.Record.Set("deliveryMessage", err.Error())
@@ -29,7 +29,13 @@ func (app *application) useChannelMutations() {
 			}
 
 			if executor := executors.GetExecutor(mutationRecord.GetString("executor")); executor != nil {
-				messageText = executor.Execute(messageText, mutationRecord.GetString("script"))
+				mep := &executors.MessageExecutorParameters{
+					Message: messageText,
+					Script:  mutationRecord.GetString("script"),
+					PB:      app.pb,
+					OwnerID: channelRecord.GetString("owner"),
+				}
+				messageText = executor.Execute(mep)
 			}
 		}
 

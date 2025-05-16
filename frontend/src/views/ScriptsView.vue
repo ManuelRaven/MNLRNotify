@@ -104,6 +104,27 @@ limitMessageLines()
       "# JSON processing example\npowershell -noprofile -command \"&{\n    $msg = '{{message}}' | ConvertFrom-Json\n    $msg.level = 'INFO'\n    $msg | ConvertTo-Json\n}\"",
     readonly: true,
   },
+  "VIRT:\\examples\\JavaScript Examples\\kvStore.js": {
+    isFile: true,
+    content: `// KV Store Example
+// Store data
+const userPrefs = { theme: "dark", notifications: true };
+kvStore.Set("userPreferences", JSON.stringify(userPrefs));
+
+// Retrieve data
+const savedPrefs = kvStore.Get("userPreferences");
+let prefs = savedPrefs ? JSON.parse(savedPrefs) : {};
+
+// Modify data
+prefs.lastMessage = message;
+
+// Store updated data
+kvStore.Set("userPreferences", JSON.stringify(prefs));
+
+// Return the processed message
+\`Processed by \${prefs.theme} theme: \${message}\`;`,
+    readonly: true,
+  },
 };
 
 // Convert mutation to filename
@@ -290,6 +311,30 @@ onMounted(() => {
 monaco.languages.typescript.javascriptDefaults.addExtraLib(
   `
 declare let message: string;
+
+declare const kvStore: {
+  /**
+   * Get a value from the key-value store
+   * @param key The key to retrieve
+   * @returns The stored value or null if not found
+   */
+  Get(key: string): string | null;
+  
+  /**
+   * Store a value in the key-value store
+   * @param key The key to store under
+   * @param value The value to store must be a json string (Use JSON.stringify)
+   * @example
+   * kvStore.Set("key", JSON.stringify({ foo: "bar" }));
+   */
+  Set(key: string, value: string): void;
+  
+  /**
+   * Delete a value from the key-value store
+   * @param key The key to delete
+   */
+  Delete(key: string): void;
+};
 `,
   "global.d.ts"
 );

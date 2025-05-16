@@ -87,6 +87,11 @@ const router = createRouter({
           name: "channel-mutations-editor",
           component: () => import("../views/ScriptsView.vue"),
         },
+        {
+          path: "/kvstore",
+          name: "kvstore",
+          component: () => import("../views/KVStoreView.vue"),
+        },
       ],
     },
     {

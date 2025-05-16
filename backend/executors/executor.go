@@ -1,7 +1,16 @@
 package executors
 
+import "github.com/pocketbase/pocketbase"
+
+type MessageExecutorParameters struct {
+	Message string
+	Script  string
+	PB      *pocketbase.PocketBase
+	OwnerID string
+}
+
 type MessageExecutor interface {
-	Execute(message string, script string) string
+	Execute(mep *MessageExecutorParameters) string
 }
 
 var executors = make(map[string]MessageExecutor)

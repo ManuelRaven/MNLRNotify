@@ -37,6 +37,9 @@
       >
         Editor
       </BDropdownItem>
+      <BDropdownItem exact exact-active-class="active" :to="{ name: 'kvstore' }"
+        >KV Store</BDropdownItem
+      >
     </BNavItemDropdown>
     <BNavItem exact exact-active-class="active" :to="{ name: 'senders' }"
       >Senders</BNavItem
@@ -53,6 +56,7 @@
     <BNavItem exact exact-active-class="active" :to="{ name: 'receivers' }"
       >Receivers</BNavItem
     >
+
     <BNavItem exact exact-active-class="active" :to="{ name: 'guides' }"
       >Integration Guides</BNavItem
     >
@@ -92,7 +96,7 @@ const mode = useColorMode({
   persist: true,
 });
 
-import { useThemeStore, availableThemes } from "@/stores/useThemeStore";
+import { availableThemes, useThemeStore } from "@/stores/useThemeStore";
 
 const themeStore = useThemeStore();
 const selectedTheme = ref(themeStore.theme);

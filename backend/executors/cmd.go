@@ -14,7 +14,10 @@ func init() {
 	RegisterExecutor("cmd", &CmdExecutor{})
 }
 
-func (e *CmdExecutor) Execute(message string, script string) string {
+func (e *CmdExecutor) Execute(mep *MessageExecutorParameters) string {
+	message := mep.Message
+	script := mep.Script
+
 	// Create context with timeout
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

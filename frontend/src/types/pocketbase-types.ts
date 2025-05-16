@@ -7,6 +7,7 @@ import type { RecordService } from 'pocketbase'
 
 export enum Collections {
 	ApplicationKV = "ApplicationKV",
+	KVStore = "KVStore",
 	Authorigins = "_authOrigins",
 	Externalauths = "_externalAuths",
 	Mfas = "_mfas",
@@ -26,15 +27,20 @@ export type IsoDateString = string
 export type RecordIdString = string
 export type HTMLString = string
 
+type ExpandType<T> = unknown extends T
+	? T extends unknown
+		? { expand?: unknown }
+		: { expand: T }
+	: { expand: T }
+
 // System fields
-export type BaseSystemFields<T = never> = {
+export type BaseSystemFields<T = unknown> = {
 	id: RecordIdString
 	collectionId: string
 	collectionName: Collections
-	expand?: T
-}
+} & ExpandType<T>
 
-export type AuthSystemFields<T = never> = {
+export type AuthSystemFields<T = unknown> = {
 	email: string
 	emailVisibility: boolean
 	username: string
@@ -49,6 +55,14 @@ export type ApplicationKVRecord<Tvalue = unknown> = {
 	key: string
 	updated?: IsoDateString
 	value: null | Tvalue
+}
+
+export type KVStoreRecord<Tvalue = unknown> = {
+	created?: IsoDateString
+	id: string
+	owner?: RecordIdString
+	updated?: IsoDateString
+	value?: null | Tvalue
 }
 
 export type AuthoriginsRecord = {
@@ -190,6 +204,7 @@ export type WebpushDevicesRecord<Tsubscription = unknown> = {
 
 // Response types include system fields and match responses from the PocketBase API
 export type ApplicationKVResponse<Tvalue = unknown, Texpand = unknown> = Required<ApplicationKVRecord<Tvalue>> & BaseSystemFields<Texpand>
+export type KVStoreResponse<Tvalue = unknown, Texpand = unknown> = Required<KVStoreRecord<Tvalue>> & BaseSystemFields<Texpand>
 export type AuthoriginsResponse<Texpand = unknown> = Required<AuthoriginsRecord> & BaseSystemFields<Texpand>
 export type ExternalauthsResponse<Texpand = unknown> = Required<ExternalauthsRecord> & BaseSystemFields<Texpand>
 export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemFields<Texpand>
@@ -207,6 +222,7 @@ export type WebpushDevicesResponse<Tsubscription = unknown, Texpand = unknown> =
 
 export type CollectionRecords = {
 	ApplicationKV: ApplicationKVRecord
+	KVStore: KVStoreRecord
 	_authOrigins: AuthoriginsRecord
 	_externalAuths: ExternalauthsRecord
 	_mfas: MfasRecord
@@ -223,6 +239,7 @@ export type CollectionRecords = {
 
 export type CollectionResponses = {
 	ApplicationKV: ApplicationKVResponse
+	KVStore: KVStoreResponse
 	_authOrigins: AuthoriginsResponse
 	_externalAuths: ExternalauthsResponse
 	_mfas: MfasResponse
@@ -242,6 +259,7 @@ export type CollectionResponses = {
 
 export type TypedPocketBase = PocketBase & {
 	collection(idOrName: 'ApplicationKV'): RecordService<ApplicationKVResponse>
+	collection(idOrName: 'KVStore'): RecordService<KVStoreResponse>
 	collection(idOrName: '_authOrigins'): RecordService<AuthoriginsResponse>
 	collection(idOrName: '_externalAuths'): RecordService<ExternalauthsResponse>
 	collection(idOrName: '_mfas'): RecordService<MfasResponse>
