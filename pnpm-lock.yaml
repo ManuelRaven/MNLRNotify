@@ -33,8 +33,8 @@ importers:
         specifier: ^1.1.6
         version: 1.1.6(monaco-editor@0.52.2)(vue@3.5.14(typescript@5.8.3))
       pinia:
-        specifier: ^2.2.6
-        version: 2.3.1(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
+        specifier: ^3.0.0
+        version: 3.0.2(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
       pocketbase:
         specifier: ^0.26.0
         version: 0.26.0
@@ -1304,6 +1304,9 @@ packages:
 
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+
+  '@vue/devtools-api@7.7.6':
+    resolution: {integrity: sha512-b2Xx0KvXZObePpXPYHvBRRJLDQn5nhKjXh7vUhMEtWxz1AYNFOVIsh5+HLP8xDGL7sy+Q7hXeUxPHB/KgbtsPw==}
 
   '@vue/devtools-core@7.7.6':
     resolution: {integrity: sha512-ghVX3zjKPtSHu94Xs03giRIeIWlb9M+gvDRVpIZ/cRIxKHdW6HE/sm1PT3rUYS3aV92CazirT93ne+7IOvGUWg==}
@@ -2645,8 +2648,8 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  pinia@2.3.1:
-    resolution: {integrity: sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==}
+  pinia@3.0.2:
+    resolution: {integrity: sha512-sH2JK3wNY809JOeiiURUR0wehJ9/gd9qFN2Y828jCbxEzKEmEt0pzCXwqiSTfuRsK9vQsOflSdnbdBOGrhtn+g==}
     peerDependencies:
       typescript: '>=4.4.4'
       vue: ^2.7.0 || ^3.5.11
@@ -4775,6 +4778,10 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
+  '@vue/devtools-api@7.7.6':
+    dependencies:
+      '@vue/devtools-kit': 7.7.6
+
   '@vue/devtools-core@7.7.6(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.2))(vue@3.5.14(typescript@5.8.3))':
     dependencies:
       '@vue/devtools-kit': 7.7.6
@@ -6223,15 +6230,12 @@ snapshots:
 
   pidtree@0.6.0: {}
 
-  pinia@2.3.1(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)):
+  pinia@3.0.2(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)):
     dependencies:
-      '@vue/devtools-api': 6.6.4
+      '@vue/devtools-api': 7.7.6
       vue: 3.5.14(typescript@5.8.3)
-      vue-demi: 0.14.10(vue@3.5.14(typescript@5.8.3))
     optionalDependencies:
       typescript: 5.8.3
-    transitivePeerDependencies:
-      - '@vue/composition-api'
 
   pkg-types@1.3.1:
     dependencies:
