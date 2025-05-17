@@ -3,7 +3,13 @@ import TheFrame from "@/components/nav/TheFrame.vue";
 </script>
 
 <template>
-  <TheFrame><RouterView /></TheFrame>
+  <TheFrame
+    ><router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
+  </TheFrame>
 </template>
 
 <style scoped></style>
