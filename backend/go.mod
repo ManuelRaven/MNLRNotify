@@ -5,7 +5,7 @@ go 1.23.1
 require (
 	github.com/SherClockHolmes/webpush-go v1.4.0
 	github.com/containrrr/shoutrrr v0.8.0
-	github.com/dop251/goja v0.0.0-20250531102226-cb187b08699c
+	github.com/dop251/goja v0.0.0-20250624190929-4d26883d182a
 	github.com/pocketbase/dbx v1.11.0
 	github.com/pocketbase/pocketbase v0.28.4
 	golang.org/x/exp v0.0.0-20250620022241-b7579e27df2b
