@@ -25,7 +25,7 @@ importers:
         version: 0.40.2(@vueuse/core@10.11.1(vue@3.5.21(typescript@5.9.2)))(vue-router@4.5.1(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
       bootswatch:
         specifier: ^5.3.6
-        version: 5.3.7
+        version: 5.3.8
       monaco-editor:
         specifier: ^0.53.0
         version: 0.53.0
@@ -1495,8 +1495,8 @@ packages:
     peerDependencies:
       '@popperjs/core': ^2.11.8
 
-  bootswatch@5.3.7:
-    resolution: {integrity: sha512-n0X99+Jmpmd4vgkli5KwMOuAkgdyUPhq7cIAwoGXbM6WhE/mmkWACfxpr7WZeG9Pdx509Ndi+2K1HlzXXOr8/Q==}
+  bootswatch@5.3.8:
+    resolution: {integrity: sha512-88mnH9tv+x6DV+scBxYFOpM4YSDVhyfEgbhqaEfvkHNctKI9qRcACxIP9nmBZ5mSeLXtsgax1VsRkUs1eWjlAQ==}
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
@@ -5001,7 +5001,7 @@ snapshots:
     dependencies:
       '@popperjs/core': 2.11.8
 
-  bootswatch@5.3.7: {}
+  bootswatch@5.3.8: {}
 
   brace-expansion@1.1.12:
     dependencies:
