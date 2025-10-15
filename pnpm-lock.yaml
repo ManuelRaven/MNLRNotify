@@ -22,7 +22,7 @@ importers:
         version: 5.3.8(@popperjs/core@2.11.8)
       bootstrap-vue-next:
         specifier: ^0.40.0
-        version: 0.40.6(@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.3)))(vue-router@4.6.0(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 0.40.6(@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.3)))(vue-router@4.6.2(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       bootswatch:
         specifier: ^5.3.6
         version: 5.3.8
@@ -43,7 +43,7 @@ importers:
         version: 3.5.22(typescript@5.9.3)
       vue-router:
         specifier: ^4.5.1
-        version: 4.6.0(vue@3.5.22(typescript@5.9.3))
+        version: 4.6.2(vue@3.5.22(typescript@5.9.3))
     devDependencies:
       '@iconify-json/bi':
         specifier: ^1.2.4
@@ -3340,8 +3340,8 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  vue-router@4.6.0:
-    resolution: {integrity: sha512-YRrWLi4ayHe1d6zyH6sMPwF/WwcDY8XgUOfQGa0Kx4kmugSorLavD1ExrM/Y83B4X2NQMXYpJFSq2pbZh9ildQ==}
+  vue-router@4.6.2:
+    resolution: {integrity: sha512-my83mxQKXyCms9EegBXZldehOihxBjgSjZqrZwgg4vBacNGl0oBCO+xT//wgOYpLV1RW93ZfqxrjTozd+82nbA==}
     peerDependencies:
       vue: ^3.5.0
 
@@ -4996,12 +4996,12 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  bootstrap-vue-next@0.40.6(@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.3)))(vue-router@4.6.0(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
+  bootstrap-vue-next@0.40.6(@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.3)))(vue-router@4.6.2(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
     optionalDependencies:
       '@vueuse/core': 10.11.1(vue@3.5.22(typescript@5.9.3))
-      vue-router: 4.6.0(vue@3.5.22(typescript@5.9.3))
+      vue-router: 4.6.2(vue@3.5.22(typescript@5.9.3))
 
   bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:
@@ -7095,7 +7095,7 @@ snapshots:
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
 
-  vue-router@4.6.0(vue@3.5.22(typescript@5.9.3)):
+  vue-router@4.6.2(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.22(typescript@5.9.3)
