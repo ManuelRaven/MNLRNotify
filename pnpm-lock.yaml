@@ -27,11 +27,11 @@ importers:
         specifier: ^5.3.6
         version: 5.3.8
       monaco-editor:
-        specifier: ^0.54.0
-        version: 0.54.0
+        specifier: ^0.55.0
+        version: 0.55.0
       monaco-tree-editor:
         specifier: ^1.1.6
-        version: 1.1.6(monaco-editor@0.54.0)(vue@3.5.24(typescript@5.9.3))
+        version: 1.1.6(monaco-editor@0.55.0)(vue@3.5.24(typescript@5.9.3))
       pinia:
         specifier: ^3.0.2
         version: 3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
@@ -1724,8 +1724,8 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
-  dompurify@3.1.7:
-    resolution: {integrity: sha512-VaTstWtsneJY8xzy7DekmYWEOZcmzIe3Qb3zPd4STve1OBTa+e+WmS1ITQec1fZYXI3HCsOZZiSMpG6oxoWMWQ==}
+  dompurify@3.2.7:
+    resolution: {integrity: sha512-WhL/YuveyGXJaerVlMYGWhvQswa7myDG17P7Vu65EWC05o8vfeNbvNf4d/BOvH99+ZW+LlQsc1GDKMa1vNK6dw==}
 
   dotenv-flow@4.1.0:
     resolution: {integrity: sha512-0cwP9jpQBQfyHwvE0cRhraZMkdV45TQedA8AAUZMsFzvmLcQyc1HPv+oX0OOYwLFjIlvgVepQ+WuQHbqDaHJZg==}
@@ -2411,8 +2411,8 @@ packages:
   mlly@1.8.0:
     resolution: {integrity: sha512-l8D9ODSRWLe2KHJSifWGwBqpTZXIXTeo8mlKjY+E2HAakaTeNpqAyBZ8GSqLzHgw4XmHmC8whvpjJNMbFZN7/g==}
 
-  monaco-editor@0.54.0:
-    resolution: {integrity: sha512-hx45SEUoLatgWxHKCmlLJH81xBo0uXP4sRkESUpmDQevfi+e7K1VuiSprK6UpQ8u4zOcKNiH0pMvHvlMWA/4cw==}
+  monaco-editor@0.55.0:
+    resolution: {integrity: sha512-z0wxERYJs9181lmruSC42pD2AEllobxBrDWnOMbKBKWmQnhKn7p3BGvpk+Usahooa0ueCShJkWXE8vXgYvKCIg==}
 
   monaco-tree-editor@1.1.6:
     resolution: {integrity: sha512-9fRaWZQsQOh4UWQqN3mMlyX3gyHZhfSAoBiMdde4WsnX3X0FwVP9QrNWH7Z35IHML5MLqLgGTIpXFe0NCDB4YA==}
@@ -5169,7 +5169,9 @@ snapshots:
 
   detect-libc@2.1.2: {}
 
-  dompurify@3.1.7: {}
+  dompurify@3.2.7:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
 
   dotenv-flow@4.1.0:
     dependencies:
@@ -5941,14 +5943,14 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  monaco-editor@0.54.0:
+  monaco-editor@0.55.0:
     dependencies:
-      dompurify: 3.1.7
+      dompurify: 3.2.7
       marked: 14.0.0
 
-  monaco-tree-editor@1.1.6(monaco-editor@0.54.0)(vue@3.5.24(typescript@5.9.3)):
+  monaco-tree-editor@1.1.6(monaco-editor@0.55.0)(vue@3.5.24(typescript@5.9.3)):
     dependencies:
-      monaco-editor: 0.54.0
+      monaco-editor: 0.55.0
       nanoid: 5.1.5
       vue: 3.5.24(typescript@5.9.3)
 
