@@ -37,7 +37,7 @@ importers:
         version: 3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
       pocketbase:
         specifier: ^0.26.0
-        version: 0.26.4
+        version: 0.26.5
       vue:
         specifier: ^3.5.14
         version: 3.5.25(typescript@5.9.3)
@@ -1403,8 +1403,8 @@ packages:
     resolution: {integrity: sha512-sXdt2elaVnhpDNRDz+1BDx1JQoJRuNk7oVlAlbGiFkLikHCAQiccexF/9e91zVi6RCgqspl04aP+6Cnl9zRLrA==}
     hasBin: true
 
-  baseline-browser-mapping@2.9.0:
-    resolution: {integrity: sha512-Mh++g+2LPfzZToywfE1BUzvZbfOY52Nil0rn9H1CPC5DJ7fX+Vir7nToBeoiSbB1zTNeGYbELEvJESujgGrzXw==}
+  baseline-browser-mapping@2.9.2:
+    resolution: {integrity: sha512-PxSsosKQjI38iXkmb3d0Y32efqyA0uW4s41u4IVBsLlWLhCiYNpH/AfNOVWRqCQBlD8TFJTz6OUWNd4DFJCnmw==}
     hasBin: true
 
   binary-extensions@2.3.0:
@@ -2622,8 +2622,8 @@ packages:
     resolution: {integrity: sha512-HWq/vm4zragt68n3ybUj+BoFdwITPgqIdLm/D9VIi9m5a55GgaafpOB9BpKBHkesaDH5f6dOTb3ZWbdwlwmEdQ==}
     hasBin: true
 
-  pocketbase@0.26.4:
-    resolution: {integrity: sha512-r3JL7Lq7TfMSn0cWHD6RL27HM6BXGI3He4CgdX526nPhvacIMMKHONNh2Myuf+hineoeFXGf/BnrViH9V4TzEQ==}
+  pocketbase@0.26.5:
+    resolution: {integrity: sha512-SXcq+sRvVpNxfLxPB1C+8eRatL7ZY4o3EVl/0OdE3MeR9fhPyZt0nmmxLqYmkLvXCN9qp3lXWV/0EUYb3MmMXQ==}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -3199,8 +3199,8 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  update-browserslist-db@1.2.1:
-    resolution: {integrity: sha512-R9NcHbbZ45RoWfTdhn1J9SS7zxNvlddv4YRrHTUaFdtjbmfncfedB45EC9IaqJQ97iAR1GZgOfyRQO+ExIF6EQ==}
+  update-browserslist-db@1.2.2:
+    resolution: {integrity: sha512-E85pfNzMQ9jpKkA7+TJAi4TJN+tBCuWh5rUcS/sv6cFi+1q9LYDwDI5dpUL0u/73EElyQ8d3TEaeW4sPedBqYA==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -4862,7 +4862,7 @@ snapshots:
 
   baseline-browser-mapping@2.8.29: {}
 
-  baseline-browser-mapping@2.9.0: {}
+  baseline-browser-mapping@2.9.2: {}
 
   binary-extensions@2.3.0: {}
 
@@ -4914,11 +4914,11 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.9.0
+      baseline-browser-mapping: 2.9.2
       caniuse-lite: 1.0.30001759
       electron-to-chromium: 1.5.264
       node-releases: 2.0.27
-      update-browserslist-db: 1.2.1(browserslist@4.28.1)
+      update-browserslist-db: 1.2.2(browserslist@4.28.1)
 
   buffer-from@1.1.2: {}
 
@@ -6175,7 +6175,7 @@ snapshots:
       - encoding
       - supports-color
 
-  pocketbase@0.26.4: {}
+  pocketbase@0.26.5: {}
 
   possible-typed-array-names@1.1.0: {}
 
@@ -6881,7 +6881,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  update-browserslist-db@1.2.1(browserslist@4.28.1):
+  update-browserslist-db@1.2.2(browserslist@4.28.1):
     dependencies:
       browserslist: 4.28.1
       escalade: 3.2.0
