@@ -36,7 +36,7 @@
   "devDependencies": {
     "@iconify-json/bi": "^1.2.4",
     "@tsconfig/node22": "^22.0.1",
-    "@types/node": "^22.15.18",
+    "@types/node": "^25.0.0",
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/compiler-sfc": "^3.5.14",
