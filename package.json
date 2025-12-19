@@ -24,7 +24,7 @@
     "@vue-flow/controls": "^1.1.2",
     "@vue-flow/core": "^1.43.2",
     "bootstrap": "^5.3.6",
-    "bootstrap-vue-next": "^0.41.0",
+    "bootstrap-vue-next": "^0.42.0",
     "bootswatch": "^5.3.6",
     "monaco-editor": "^0.55.0",
     "monaco-tree-editor": "^1.1.6",
