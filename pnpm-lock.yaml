@@ -37,7 +37,7 @@ importers:
         version: 3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       pocketbase:
         specifier: ^0.26.0
-        version: 0.26.5
+        version: 0.26.6
       vue:
         specifier: ^3.5.14
         version: 3.5.26(typescript@5.9.3)
@@ -2695,8 +2695,8 @@ packages:
     resolution: {integrity: sha512-9RnoS0Hm7kg4dEAV0zz21OkULy+t1DpWBeZHT9j4ZJu3L58pdfva/2314mhfE2hrOUeNiedqoFtfkJ9ZYQ8yng==}
     hasBin: true
 
-  pocketbase@0.26.5:
-    resolution: {integrity: sha512-SXcq+sRvVpNxfLxPB1C+8eRatL7ZY4o3EVl/0OdE3MeR9fhPyZt0nmmxLqYmkLvXCN9qp3lXWV/0EUYb3MmMXQ==}
+  pocketbase@0.26.6:
+    resolution: {integrity: sha512-Pl7V4y3DWglYITC4cBpclmuIzePRGsb/sXk/Wyqxznwu5JsHA5IILJY81PT2XQ3OSKCakWjbxjYBqtdcghzKvA==}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -3419,8 +3419,8 @@ packages:
     resolution: {integrity: sha512-K4jVyjnBdgvc86Y6BkaLZEN933SwYOuBFkdmBu9ZfkcAbdVbpITnDmjvZ/aQjRXQrv5EPkTnD1s39GiiqbngCw==}
     engines: {node: '>= 0.4'}
 
-  which-typed-array@1.1.19:
-    resolution: {integrity: sha512-rEvr90Bck4WZt9HHFC4DJMsjvu7x+r6bImz0/BrbWb7A2djJ8hnZMrWnHo9F8ssv0OMErasDhftrfROTyqSDrw==}
+  which-typed-array@1.1.20:
+    resolution: {integrity: sha512-LYfpUkmqwl0h9A2HL09Mms427Q1RZWuOHsukfVcKRq9q95iQxdw0ix1JQrqbcDR9PH1QDwf5Qo8OZb5lksZ8Xg==}
     engines: {node: '>= 0.4'}
 
   which@2.0.2:
@@ -5498,7 +5498,7 @@ snapshots:
       typed-array-byte-offset: 1.0.4
       typed-array-length: 1.0.7
       unbox-primitive: 1.1.0
-      which-typed-array: 1.1.19
+      which-typed-array: 1.1.20
 
   es-define-property@1.0.1: {}
 
@@ -5958,7 +5958,7 @@ snapshots:
 
   is-typed-array@1.1.15:
     dependencies:
-      which-typed-array: 1.1.19
+      which-typed-array: 1.1.20
 
   is-unicode-supported@2.1.0: {}
 
@@ -6369,7 +6369,7 @@ snapshots:
       - encoding
       - supports-color
 
-  pocketbase@0.26.5: {}
+  pocketbase@0.26.6: {}
 
   possible-typed-array-names@1.1.0: {}
 
@@ -7227,7 +7227,7 @@ snapshots:
       isarray: 2.0.5
       which-boxed-primitive: 1.1.1
       which-collection: 1.0.2
-      which-typed-array: 1.1.19
+      which-typed-array: 1.1.20
 
   which-collection@1.0.2:
     dependencies:
@@ -7236,7 +7236,7 @@ snapshots:
       is-weakmap: 2.0.2
       is-weakset: 2.0.4
 
-  which-typed-array@1.1.19:
+  which-typed-array@1.1.20:
     dependencies:
       available-typed-arrays: 1.0.7
       call-bind: 1.0.8
