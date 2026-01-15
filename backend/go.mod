@@ -2,7 +2,7 @@ module mnlr.de/MNLRNotify
 
 go 1.24.0
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/SherClockHolmes/webpush-go v1.4.0
