@@ -38,7 +38,7 @@
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.15.18",
     "@vite-pwa/assets-generator": "^1.0.0",
-    "@vitejs/plugin-vue": "^5.2.4",
+    "@vitejs/plugin-vue": "^6.0.0",
     "@vue/compiler-sfc": "^3.5.14",
     "@vue/tsconfig": "^0.8.0",
     "concurrently": "^9.1.2",
