@@ -193,7 +193,7 @@ pwsh -noprofile -command "&{
           size="sm"
           variant="danger"
           class="me-1"
-          @click="onDelete(row.item, row.index)"
+          @click="onDelete(row.item)"
         >
           Delete
         </BButton>
@@ -226,7 +226,7 @@ import {
     useToastController,
     type TableFieldRaw,
 } from "bootstrap-vue-next";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 const showTextResponseModal = ref(false);
 const currentEditMutation = ref<ChannelMutationsRecord | null>(null);
@@ -248,7 +248,7 @@ const newMutation = ref<ChannelMutationsRequest>({
 const mutations = ref<ChannelMutationsRecord[]>([]);
 const executorOptions = Object.values(ChannelMutationsExecutorOptions);
 
-const onDelete = async (mutation: ChannelMutationsRecord, index: number) => {
+const onDelete = async (mutation: ChannelMutationsRecord) => {
   try {
     const result = await create({
       title: "Are you sure?",
@@ -261,7 +261,12 @@ const onDelete = async (mutation: ChannelMutationsRecord, index: number) => {
       props: { title: "Success", body: "Mutation Deleted", variant: "success" },
     });
 
-    mutations.value.splice(index, 1);
+    if (mutations.value.length === 1 && currentPage.value > 1) {
+      // Move to previous page if the current page became empty after deletion.
+      currentPage.value -= 1;
+    } else {
+      await fetchMutations();
+    }
   } catch (error) {
     toast.show?.({
       props: { title: "Error", body: (error as any) || "", variant: "danger" },
@@ -385,6 +390,10 @@ const fetchMutations = async () => {
 };
 
 onMounted(() => {
+  fetchMutations();
+});
+
+watch(currentPage, () => {
   fetchMutations();
 });
 </script>

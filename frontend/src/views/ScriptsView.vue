@@ -174,7 +174,7 @@ const loadMutations = async () => {
 
 const handleReload = async (
   resolve: () => void,
-  reject: (msg?: string) => void
+  reject: (msg?: string) => void,
 ) => {
   try {
     await loadMutations();
@@ -188,7 +188,7 @@ const handleSaveFile = async (
   path: string,
   content: string,
   resolve: () => void,
-  reject: (msg?: string) => void
+  reject: (msg?: string) => void,
 ) => {
   try {
     if (path.startsWith("VIRT:\\examples\\")) {
@@ -213,7 +213,7 @@ const handleSaveFile = async (
 const handleNewFile = async (
   path: string,
   resolve: Function,
-  reject: Function
+  reject: Function,
 ) => {
   try {
     const filename = path.split("\\").pop() || "";
@@ -239,7 +239,7 @@ const handleNewFile = async (
 const handleDeleteFile = async (
   path: string,
   resolve: () => void,
-  reject: (msg?: string) => void
+  reject: (msg?: string) => void,
 ) => {
   try {
     if (path.startsWith("VIRT:\\examples\\")) {
@@ -264,7 +264,7 @@ const handleRename = async (
   path: string,
   newPath: string,
   resolve: () => void,
-  reject: (msg?: string) => void
+  reject: (msg?: string) => void,
 ) => {
   try {
     if (path.startsWith("VIRT:\\examples\\")) {
@@ -298,7 +298,7 @@ const handleNewFolder = (_: string, __: Function, reject: Function) => {
 const handleDeleteFolder = (
   _: string,
   __: () => void,
-  reject: (msg?: string) => void
+  reject: (msg?: string) => void,
 ) => {
   reject("Folders are not supported");
 };
@@ -308,7 +308,17 @@ onMounted(() => {
 });
 
 // ================ init monaco-tree-editor ================
-monaco.languages.typescript.javascriptDefaults.addExtraLib(
+const monacoTs = monaco.typescript as unknown as {
+  javascriptDefaults: {
+    addExtraLib(content: string, filePath?: string): void;
+    setCompilerOptions(options: Record<string, unknown>): void;
+  };
+  ScriptTarget: {
+    ES5: number;
+  };
+};
+
+monacoTs.javascriptDefaults.addExtraLib(
   `
 declare let message: string;
 
@@ -336,11 +346,11 @@ declare const kvStore: {
   Delete(key: string): void;
 };
 `,
-  "global.d.ts"
+  "global.d.ts",
 );
-monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+monacoTs.javascriptDefaults.setCompilerOptions({
   allowNonTsExtensions: true,
-  target: monaco.languages.typescript.ScriptTarget.ES5,
+  target: monacoTs.ScriptTarget.ES5,
   lib: ["es5"],
 });
 
