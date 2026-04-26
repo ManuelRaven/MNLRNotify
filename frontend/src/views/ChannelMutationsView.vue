@@ -161,7 +161,7 @@ pwsh -noprofile -command "&{
       />
     </div>
 
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -222,9 +222,9 @@ import type { ChannelMutationsRequest } from "@/types/custom-types";
 import type { ChannelMutationsRecord } from "@/types/pocketbase-types";
 import { ChannelMutationsExecutorOptions } from "@/types/pocketbase-types";
 import {
-  useModalController,
-  useToastController,
-  type TableFieldRaw,
+    useModalController,
+    useToastController,
+    type TableFieldRaw,
 } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
@@ -233,7 +233,7 @@ const currentEditMutation = ref<ChannelMutationsRecord | null>(null);
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const perPage = 10;
 const currentPage = ref(1);
@@ -250,14 +250,12 @@ const executorOptions = Object.values(ChannelMutationsExecutorOptions);
 
 const onDelete = async (mutation: ChannelMutationsRecord, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you want to delete this mutation? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you want to delete this mutation? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
     await pb.collection("channel_mutations").delete(mutation.id);
     toast.show?.({
       props: { title: "Success", body: "Mutation Deleted", variant: "success" },

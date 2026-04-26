@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -44,19 +44,19 @@
 import { usePb } from "@/composeables/usePb";
 import type { ExpandChannelNameIdSingle } from "@/types/custom-types";
 import type {
-  MessageDeliveryStateOptions,
-  MessageResponse,
+    MessageDeliveryStateOptions,
+    MessageResponse,
 } from "@/types/pocketbase-types";
 import {
-  useModalController,
-  useToastController,
-  type TableFieldRaw,
+    useModalController,
+    useToastController,
+    type TableFieldRaw,
 } from "bootstrap-vue-next";
 import { onMounted, ref, watch } from "vue";
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const perPage = 10;
 const currentPage = ref(1);
@@ -66,14 +66,12 @@ const messages = ref<MessageResponse<ExpandChannelNameIdSingle>[]>([]);
 
 const onDelete = async (message: MessageResponse, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you want to delete this message? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you want to delete this message? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
     await pb.collection("message").delete(message.id);
     toast.show?.({
       props: { title: "Success", body: "Message Deleted", variant: "success" },
@@ -111,15 +109,13 @@ const fetchMessages = async () => {
   try {
     let resp = await pb
       .collection("message")
-      .getList<MessageResponse<ExpandChannelNameIdSingle>>(
-        currentPage.value,
-        perPage,
-        {
-          sort: "-created",
-          expand: "channel",
-          fields: "*,expand.channel.name,expand.channel.id",
-        }
-      );
+      .getList<
+        MessageResponse<ExpandChannelNameIdSingle>
+      >(currentPage.value, perPage, {
+        sort: "-created",
+        expand: "channel",
+        fields: "*,expand.channel.name,expand.channel.id",
+      });
 
     messages.value = resp.items;
     rowsCount.value = resp.totalItems;

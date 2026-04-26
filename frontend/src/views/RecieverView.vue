@@ -98,7 +98,7 @@ printf "Hello World!" | curl -T - \
       <BButton variant="primary" @click="createReciever">Add Receiver</BButton>
     </div>
 
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -188,14 +188,14 @@ import TextResponseModal from "@/components/GenericModals/TextResponseModal.vue"
 import { usePb } from "@/composeables/usePb";
 import type { ExpandChannelsNameId } from "@/types/custom-types";
 import {
-  RecieverTypeOptions,
-  type RecieverRecord,
-  type RecieverResponse,
+    RecieverTypeOptions,
+    type RecieverRecord,
+    type RecieverResponse,
 } from "@/types/pocketbase-types";
 import {
-  useModalController,
-  useToastController,
-  type TableFieldRaw,
+    useModalController,
+    useToastController,
+    type TableFieldRaw,
 } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
@@ -210,7 +210,7 @@ const typeOptions = [
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const perPage = 10;
 const currentPage = ref(1);
@@ -294,14 +294,12 @@ const updateRecieverChannels = async (channels: string[]) => {
 
 const onDelete = async (reciever: RecieverResponse, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you want to delete this receiver? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you want to delete this receiver? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
     await pb.collection("reciever").delete(reciever.id);
     toast.show?.({
       props: { title: "Success", body: "Receiver Deleted", variant: "success" },
@@ -355,13 +353,11 @@ const fetchRecievers = async () => {
   try {
     let resp = await pb
       .collection("reciever")
-      .getList<RecieverResponse<ExpandChannelsNameId>>(
-        currentPage.value,
-        perPage,
-        {
-          expand: "channels",
-        }
-      );
+      .getList<
+        RecieverResponse<ExpandChannelsNameId>
+      >(currentPage.value, perPage, {
+        expand: "channels",
+      });
 
     recievers.value = resp.items;
     rowsCount.value = resp.totalItems;

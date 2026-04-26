@@ -84,7 +84,7 @@
       </BAccordionItem>
     </BAccordion>
 
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -113,8 +113,9 @@
             size="sm"
             variant="link"
             class="p-0 ms-1"
-            v-b-tooltip.hover
-            title="Maximum characters per message. Messages longer than this will be split into multiple messages. Set to 0 to disable splitting."
+            v-b-tooltip.hover="
+              'Maximum characters per message. Messages longer than this will be split into multiple messages. Set to 0 to disable splitting.'
+            "
           >
             <IBiInfoCircle />
           </BButton>
@@ -186,14 +187,14 @@ import NumberResponseModal from "@/components/GenericModals/NumberResponseModal.
 import TextResponseModal from "@/components/GenericModals/TextResponseModal.vue";
 import { usePb } from "@/composeables/usePb";
 import type {
-  CreateSenderRequest,
-  ExpandChannelNameId,
+    CreateSenderRequest,
+    ExpandChannelNameId,
 } from "@/types/custom-types";
 import type { SenderResponse } from "@/types/pocketbase-types";
 import {
-  useModalController,
-  useToastController,
-  type TableFieldRaw,
+    useModalController,
+    useToastController,
+    type TableFieldRaw,
 } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
@@ -306,7 +307,7 @@ const onSplitLimitChange = async (newLimit: number | null) => {
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const perPage = 10;
 const currentPage = ref(1);
@@ -321,14 +322,12 @@ const senders = ref<SenderResponse<ExpandChannelNameId>[]>([]);
 
 const onDelete = async (sender: SenderResponse, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you want to delete this sender? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you want to delete this sender? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
     await pb.collection("sender").delete(sender.id);
     toast.show?.({
       props: { title: "Success", body: "Sender Deleted", variant: "success" },
@@ -398,13 +397,11 @@ const fetchSenders = async () => {
   try {
     let resp = await pb
       .collection("sender")
-      .getList<SenderResponse<ExpandChannelNameId>>(
-        currentPage.value,
-        perPage,
-        {
-          expand: "channel",
-        }
-      );
+      .getList<
+        SenderResponse<ExpandChannelNameId>
+      >(currentPage.value, perPage, {
+        expand: "channel",
+      });
 
     senders.value = resp.items;
     rowsCount.value = resp.totalItems;

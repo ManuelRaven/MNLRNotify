@@ -32,7 +32,7 @@
       </BInputGroup>
     </div>
 
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -140,7 +140,7 @@ import { onMounted, ref, watch } from "vue";
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const isLoading = ref(false);
 const perPage = 10;
@@ -184,14 +184,12 @@ const parseValue = (value: string): any => {
 
 const onDelete = async (item: KVStoreResponse, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you really want to delete this KV entry? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you really want to delete this KV entry? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
 
     await pb.collection("KVStore").delete(item.id);
 

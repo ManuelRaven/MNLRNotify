@@ -43,7 +43,9 @@ func main() {
 	app.useChannelMutations()
 	app.useonCreateReciever()
 
-	log.Fatal(app.pb.Start())
+	if err := app.pb.Start(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // getEnvOrDefault retrieves the value of an environment variable by key.

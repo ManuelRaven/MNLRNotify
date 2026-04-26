@@ -33,7 +33,7 @@
       <BButton variant="primary" @click="createChannel">Add Channel</BButton>
     </div>
 
-    <b-pagination
+    <BPagination
       v-model="currentPage"
       :total-rows="rowsCount"
       :per-page="perPage"
@@ -221,7 +221,7 @@ const onMutationsChange = async (mutations: string[]) => {
 
 const pb = usePb();
 const toast = useToastController();
-const { confirm } = useModalController();
+const { create } = useModalController();
 
 const perPage = 10;
 const currentPage = ref(1);
@@ -235,14 +235,12 @@ const channels = ref<ChannelResponse<ExpandMutations>[]>([]);
 
 const onDelete = async (channel: ChannelResponse, index: number) => {
   try {
-    const value = await confirm?.({
-      props: {
-        title: "Are you sure?",
-        body: "Do you want to delete this channel? This action cannot be undone.",
-      },
-    });
+    const result = await create({
+      title: "Are you sure?",
+      body: "Do you want to delete this channel? This action cannot be undone.",
+    }).show();
 
-    if (!value) return;
+    if (!result.ok) return;
     await pb.collection("channel").delete(channel.id);
     toast.show?.({
       props: { title: "Success", body: "Bookmark Deleted", variant: "success" },
