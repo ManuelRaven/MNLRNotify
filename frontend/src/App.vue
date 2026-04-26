@@ -14,9 +14,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <BModalOrchestrator />
-  <BToastOrchestrator />
-  <RouterView />
+  <BApp>
+    <RouterView />
+  </BApp>
 </template>
 
 <style scoped></style>

@@ -11,10 +11,10 @@ declare module 'vue' {
     BAccordion: typeof import('bootstrap-vue-next/components/BAccordion')['BAccordion']
     BAccordionItem: typeof import('bootstrap-vue-next/components/BAccordion')['BAccordionItem']
     BAlert: typeof import('bootstrap-vue-next/components/BAlert')['BAlert']
+    BApp: typeof import('bootstrap-vue-next/components/BApp')['BApp']
     BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
     BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
     BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
-    BCardGroup: typeof import('bootstrap-vue-next/components/BCard')['BCardGroup']
     BCardText: typeof import('bootstrap-vue-next/components/BCard')['BCardText']
     BDropdownItem: typeof import('bootstrap-vue-next/components/BDropdown')['BDropdownItem']
     BForm: typeof import('bootstrap-vue-next/components/BForm')['BForm']
@@ -30,7 +30,6 @@ declare module 'vue' {
     BListGroup: typeof import('bootstrap-vue-next/components/BListGroup')['BListGroup']
     BListGroupItem: typeof import('bootstrap-vue-next/components/BListGroup')['BListGroupItem']
     BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
-    BModalOrchestrator: typeof import('bootstrap-vue-next/components/BModal')['BModalOrchestrator']
     BNav: typeof import('bootstrap-vue-next/components/BNav')['BNav']
     BNavbar: typeof import('bootstrap-vue-next/components/BNavbar')['BNavbar']
     BNavbarBrand: typeof import('bootstrap-vue-next/components/BNavbar')['BNavbarBrand']
@@ -43,14 +42,12 @@ declare module 'vue' {
     BTab: typeof import('bootstrap-vue-next/components/BTabs')['BTab']
     BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
     BTabs: typeof import('bootstrap-vue-next/components/BTabs')['BTabs']
-    BToastOrchestrator: typeof import('bootstrap-vue-next/components/BToast')['BToastOrchestrator']
-    IBiApple: typeof import('~icons/bi/apple')['default']
     IBiInfoCircle: typeof import('~icons/bi/info-circle')['default']
     IBiList: typeof import('~icons/bi/list')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
-  export interface ComponentCustomProperties {
+  export interface GlobalDirectives {
     vBColorMode: typeof import('bootstrap-vue-next/directives/BColorMode')['vBColorMode']
     vBTooltip: typeof import('bootstrap-vue-next/directives/BTooltip')['vBTooltip']
   }

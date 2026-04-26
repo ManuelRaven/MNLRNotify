@@ -28,9 +28,7 @@
           placeholder="Search for keys..."
           @input="onSearch"
         />
-        <BInputGroupAppend>
-          <BButton @click="onSearch">Search</BButton>
-        </BInputGroupAppend>
+        <BButton @click="onSearch">Search</BButton>
       </BInputGroup>
     </div>
 
