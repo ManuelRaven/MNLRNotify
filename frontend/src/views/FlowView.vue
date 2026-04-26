@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { usePb } from "@/composeables/usePb";
 import type {
-  ChannelResponse,
-  RecieverResponse,
-  SenderResponse,
-  WebpushDevicesResponse,
+    ChannelResponse,
+    RecieverResponse,
+    SenderResponse,
+    WebpushDevicesResponse,
 } from "@/types/pocketbase-types";
 import { Background } from "@vue-flow/background";
 import { useVueFlow, VueFlow } from "@vue-flow/core";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { onMounted } from "vue";
 
 const pb = usePb();
-const toast = useToastController();
+const toast = useToast();
 const { nodes, edges, addNodes, addEdges, setViewport } = useVueFlow();
 
 // Fetch data and create flow
@@ -79,7 +79,7 @@ const createFlow = async () => {
         target: `channel-${channelId}`,
         animated: true,
         class: "receiver-edge",
-      }))
+      })),
     );
 
     const webpushEdges = webpushDevices.items.flatMap((device) =>
@@ -89,7 +89,7 @@ const createFlow = async () => {
         target: `webpush-${device.id}`,
         animated: true,
         class: "webpush-edge",
-      }))
+      })),
     );
 
     const senderEdges = senders.items.flatMap((sender) =>
@@ -99,7 +99,7 @@ const createFlow = async () => {
         target: `sender-${sender.id}`,
         animated: true,
         class: "sender-edge",
-      }))
+      })),
     );
 
     addEdges([...receiverEdges, ...webpushEdges, ...senderEdges]);

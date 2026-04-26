@@ -132,15 +132,15 @@ import { usePb } from "@/composeables/usePb";
 import type { KVStoreResponse } from "@/types/pocketbase-types";
 import {
   BvTriggerableEvent,
-  useModalController,
-  useToastController,
+  useModal,
+  useToast,
   type TableFieldRaw,
 } from "bootstrap-vue-next";
 import { onMounted, ref, watch } from "vue";
 
 const pb = usePb();
-const toast = useToastController();
-const { create } = useModalController();
+const toast = useToast();
+const { create } = useModal();
 
 const isLoading = ref(false);
 const perPage = 10;

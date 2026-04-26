@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { usePb } from "@/composeables/usePb";
 import type { ChannelResponse } from "@/types/pocketbase-types";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { onMounted, ref, watch } from "vue";
 
 const props = defineProps<{
@@ -40,7 +40,7 @@ const emit = defineEmits<{
 }>();
 
 const pb = usePb();
-const toast = useToastController();
+const toast = useToast();
 const channels = ref<ChannelResponse[]>([]);
 const selectedChannels = ref<string[]>([]);
 
@@ -64,7 +64,7 @@ watch(
   (newVal) => {
     selectedChannels.value = newVal || [];
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 watch(
@@ -73,7 +73,7 @@ watch(
     if (newVal) {
       await fetchChannels();
     }
-  }
+  },
 );
 
 const onSave = () => {

@@ -192,11 +192,7 @@ import {
     type RecieverRecord,
     type RecieverResponse,
 } from "@/types/pocketbase-types";
-import {
-    useModalController,
-    useToastController,
-    type TableFieldRaw,
-} from "bootstrap-vue-next";
+import { useModal, useToast, type TableFieldRaw } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
 const showTextResponseModal = ref(false);
@@ -209,8 +205,8 @@ const typeOptions = [
 ];
 
 const pb = usePb();
-const toast = useToastController();
-const { create } = useModalController();
+const toast = useToast();
+const { create } = useModal();
 
 const perPage = 10;
 const currentPage = ref(1);

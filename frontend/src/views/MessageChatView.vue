@@ -88,15 +88,15 @@
 <script setup lang="ts">
 import { usePb } from "@/composeables/usePb";
 import type {
-  ChannelResponse,
-  MessageDeliveryStateOptions,
-  MessageResponse,
+    ChannelResponse,
+    MessageDeliveryStateOptions,
+    MessageResponse,
 } from "@/types/pocketbase-types";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { nextTick, onMounted, ref } from "vue";
 
 const pb = usePb();
-const toast = useToastController();
+const toast = useToast();
 
 const channels = ref<ChannelResponse[]>([]);
 const messages = ref<MessageResponse[]>([]);

@@ -119,11 +119,7 @@ import type {
   ExpandMutations,
 } from "@/types/custom-types";
 import type { ChannelResponse } from "@/types/pocketbase-types";
-import {
-  useModalController,
-  useToastController,
-  type TableFieldRaw,
-} from "bootstrap-vue-next";
+import { useModal, useToast, type TableFieldRaw } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
 // Modals
@@ -220,8 +216,8 @@ const onMutationsChange = async (mutations: string[]) => {
 };
 
 const pb = usePb();
-const toast = useToastController();
-const { create } = useModalController();
+const toast = useToast();
+const { create } = useModal();
 
 const perPage = 10;
 const currentPage = ref(1);

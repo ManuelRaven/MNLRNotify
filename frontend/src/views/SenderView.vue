@@ -191,11 +191,7 @@ import type {
     ExpandChannelNameId,
 } from "@/types/custom-types";
 import type { SenderResponse } from "@/types/pocketbase-types";
-import {
-    useModalController,
-    useToastController,
-    type TableFieldRaw,
-} from "bootstrap-vue-next";
+import { useModal, useToast, type TableFieldRaw } from "bootstrap-vue-next";
 import { onMounted, ref } from "vue";
 
 const showTextResponseModal = ref(false);
@@ -306,8 +302,8 @@ const onSplitLimitChange = async (newLimit: number | null) => {
 };
 
 const pb = usePb();
-const toast = useToastController();
-const { create } = useModalController();
+const toast = useToast();
+const { create } = useModal();
 
 const perPage = 10;
 const currentPage = ref(1);

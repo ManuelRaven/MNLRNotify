@@ -53,7 +53,7 @@ self.MonacoEnvironment = {
 import { usePb } from "@/composeables/usePb";
 import type { ChannelMutationsRecord } from "@/types/pocketbase-types";
 import { ChannelMutationsExecutorOptions } from "@/types/pocketbase-types";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 
 import {
   Editor as MonacoTreeEditor,
@@ -63,7 +63,7 @@ import {
 import { onMounted, ref } from "vue";
 
 const pb = usePb();
-const toast = useToastController();
+const toast = useToast();
 const files = ref<Files>({});
 
 // Example files

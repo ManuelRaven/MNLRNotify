@@ -81,7 +81,7 @@
 <script setup lang="ts">
 import { usePb } from "@/composeables/usePb";
 import type { ChannelMutationsResponse } from "@/types/pocketbase-types";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { onMounted, ref, watch } from "vue";
 
 const props = defineProps<{
@@ -95,7 +95,7 @@ const emit = defineEmits<{
 }>();
 
 const pb = usePb();
-const toast = useToastController();
+const toast = useToast();
 const mutations = ref<ChannelMutationsResponse[]>([]);
 const selectedMutations = ref<string[]>([]);
 const currentStep = ref(1);
@@ -122,7 +122,7 @@ watch(
   (newVal) => {
     selectedMutations.value = newVal || [];
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 watch(
@@ -132,7 +132,7 @@ watch(
       currentStep.value = 1;
       fetchMutations();
     }
-  }
+  },
 );
 
 const onSave = () => {

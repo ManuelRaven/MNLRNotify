@@ -40,11 +40,11 @@
 
 <script setup lang="ts">
 import { useAuth } from "@/composeables/useAuth";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { ClientResponseError, type AuthMethodsList } from "pocketbase";
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-const { show } = useToastController();
+const { show } = useToast();
 const auth = useAuth();
 const authList = ref<AuthMethodsList | null>(null);
 const form = reactive({

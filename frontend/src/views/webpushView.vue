@@ -115,11 +115,11 @@
 import ChannelSelectionModal from "@/components/GenericModals/ChannelSelectionModal.vue";
 import { usePb } from "@/composeables/usePb";
 import type {
-  ExpandChannelNameId,
-  WebpushDeviceRequest,
+    ExpandChannelNameId,
+    WebpushDeviceRequest,
 } from "@/types/custom-types";
 import type { WebpushDevicesResponse } from "@/types/pocketbase-types";
-import { useToastController } from "bootstrap-vue-next";
+import { useToast } from "bootstrap-vue-next";
 import { computed, onMounted, ref } from "vue";
 
 const pb = usePb();
@@ -137,10 +137,10 @@ const isRegistering = ref(false);
 const currentDevice = computed(() => {
   if (!currentEndpoint.value) return null;
   return devices.value.find(
-    (device) => device.subscription?.endpoint === currentEndpoint.value
+    (device) => device.subscription?.endpoint === currentEndpoint.value,
   );
 });
-const toast = useToastController();
+const toast = useToast();
 const currentEndpoint = ref<string | null>(null);
 
 onMounted(async () => {
@@ -152,7 +152,7 @@ onMounted(async () => {
 const findNextAvailableName = (baseName: string): string => {
   if (
     !devices.value.some(
-      (device) => device.Name.toLowerCase() === baseName.toLowerCase()
+      (device) => device.Name.toLowerCase() === baseName.toLowerCase(),
     )
   ) {
     return baseName;
@@ -162,7 +162,7 @@ const findNextAvailableName = (baseName: string): string => {
   while (
     devices.value.some(
       (device) =>
-        device.Name.toLowerCase() === `${baseName} ${counter}`.toLowerCase()
+        device.Name.toLowerCase() === `${baseName} ${counter}`.toLowerCase(),
     )
   ) {
     counter++;
@@ -176,7 +176,7 @@ const generateDeviceName = (): string => {
 
   // Detect browser
   const browserMatches = ua.match(
-    /(chrome|safari|firefox|edge|opera(?=\/))\/?\s*(\d+)/i
+    /(chrome|safari|firefox|edge|opera(?=\/))\/?\s*(\d+)/i,
   );
   const browser = browserMatches ? browserMatches[1] : "";
 
@@ -332,7 +332,7 @@ const isNameUnique = computed(() => {
   return !devices.value.some(
     (device) =>
       device.Name.toLowerCase() === deviceName.value.toLowerCase() &&
-      device.id !== currentDevice.value?.id
+      device.id !== currentDevice.value?.id,
   );
 });
 
@@ -347,7 +347,7 @@ const deviceNameErrorMessage = computed(() => {
 });
 
 const deviceNameValid = computed(
-  () => deviceName.value.length >= 3 && isNameUnique.value
+  () => deviceName.value.length >= 3 && isNameUnique.value,
 );
 
 const openChannelModal = (device: WebpushDevicesResponse) => {

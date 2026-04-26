@@ -44,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { BCard, useToastController } from "bootstrap-vue-next";
+import { BCard, useToast } from "bootstrap-vue-next";
 
-const { show } = useToastController();
+const { show } = useToast();
 </script>
 
 <style scoped></style>
