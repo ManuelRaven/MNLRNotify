@@ -7,7 +7,7 @@ toolchain go1.26.1
 require (
 	github.com/SherClockHolmes/webpush-go v1.4.0
 	github.com/containrrr/shoutrrr v0.8.0
-	github.com/dop251/goja v0.0.0-20260311135729-065cd970411c
+	github.com/dop251/goja v0.0.0-20260618133527-c9b2ea77db59
 	github.com/pocketbase/dbx v1.12.0
 	github.com/pocketbase/pocketbase v0.37.4
 	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90
@@ -17,6 +17,7 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/dlclark/regexp2 v1.11.5 // indirect
+	github.com/dlclark/regexp2/v2 v2.2.1 // indirect
 	github.com/domodwyer/mailyak/v3 v3.6.2 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.19.0 // indirect
