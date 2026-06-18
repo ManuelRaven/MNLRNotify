@@ -10,7 +10,7 @@ require (
 	github.com/dop251/goja v0.0.0-20260618133527-c9b2ea77db59
 	github.com/pocketbase/dbx v1.12.0
 	github.com/pocketbase/pocketbase v0.37.4
-	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90
+	golang.org/x/exp v0.0.0-20260611194520-c48552f49976
 )
 
 require (
@@ -44,7 +44,7 @@ require (
 	golang.org/x/image v0.39.0 // indirect
 	golang.org/x/net v0.53.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
-	golang.org/x/sync v0.20.0 // indirect
+	golang.org/x/sync v0.21.0 // indirect
 	golang.org/x/sys v0.43.0 // indirect
 	golang.org/x/text v0.36.0 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
