@@ -107,7 +107,7 @@ importers:
         version: 0.0.0
       workbox-core:
         specifier: ^7.3.0
-        version: 7.4.0
+        version: 7.4.1
       workbox-precaching:
         specifier: ^7.3.0
         version: 7.4.0
@@ -3579,6 +3579,9 @@ packages:
 
   workbox-core@7.4.0:
     resolution: {integrity: sha512-6BMfd8tYEnN4baG4emG9U0hdXM4gGuDU3ectXuVHnj71vwxTFI7WOpQJC4siTOlVtGqCUtj0ZQNsrvi6kZZTAQ==}
+
+  workbox-core@7.4.1:
+    resolution: {integrity: sha512-DT+vu46eh/2vRsSHTY4Xmc32Z1rr9PRlQUXr1Dx30ZuXRWwOsvZgGgcwxcasubQLQmbTNYZjv44LkBAQ4tT5tQ==}
 
   workbox-expiration@7.3.0:
     resolution: {integrity: sha512-lpnSSLp2BM+K6bgFCWc5bS1LR5pAwDWbcKt1iL87/eTSJRdLdAwGQznZE+1czLgn/X05YChsrEegTNxjM067vQ==}
@@ -7553,6 +7556,8 @@ snapshots:
   workbox-core@7.3.0: {}
 
   workbox-core@7.4.0: {}
+
+  workbox-core@7.4.1: {}
 
   workbox-expiration@7.3.0:
     dependencies:
