@@ -31,7 +31,7 @@ importers:
         version: 0.55.1
       monaco-tree-editor:
         specifier: ^1.1.6
-        version: 1.2.0(@vue/reactivity@3.5.30)(monaco-editor@0.55.1)(vue@3.5.30(typescript@5.9.3))
+        version: 1.2.1(@vue/reactivity@3.5.30)(monaco-editor@0.55.1)(vue@3.5.30(typescript@5.9.3))
       pinia:
         specifier: ^3.0.2
         version: 3.0.4(typescript@5.9.3)(vue@3.5.30(typescript@5.9.3))
@@ -2618,8 +2618,8 @@ packages:
   monaco-editor@0.55.1:
     resolution: {integrity: sha512-jz4x+TJNFHwHtwuV9vA9rMujcZRb0CEilTEwG2rRSpe/A7Jdkuj8xPKttCgOh+v/lkHy7HsZ64oj+q3xoAFl9A==}
 
-  monaco-tree-editor@1.2.0:
-    resolution: {integrity: sha512-Gp+rjK5BRowhSvrWckYpcnQxSUmbecnVtzvdXlNZTAoHGgNS1NLC3DaoB0Y6CD/b9aYv1aNqx9f84Q956wJZzw==}
+  monaco-tree-editor@1.2.1:
+    resolution: {integrity: sha512-oD2sq5zTQj7bcG0XzNMrWEVe5nn4aPzlLcghXgOf/g8h1vPyP86vrjoYO0TCr4NRoADAldZg/fz3PscpQXlzGg==}
     engines: {node: '>=18.18.0'}
     peerDependencies:
       monaco-editor: '>=0.52.2'
@@ -2640,8 +2640,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.6:
-    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
+  nanoid@5.1.14:
+    resolution: {integrity: sha512-5c8l8kVzqpnDPaicbEop/fV0Q1w16FmbWtVhMqugTozAwYdlIQojWH5a/M7UfziFmGdQRrUdV+EPzc9Xng3VAQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
@@ -5072,7 +5072,7 @@ snapshots:
       '@vue/devtools-kit': 7.7.9
       '@vue/devtools-shared': 7.7.9
       mitt: 3.0.1
-      nanoid: 5.1.6
+      nanoid: 5.1.14
       pathe: 2.0.3
       vite-hot-client: 2.1.0(vite@6.4.3(@types/node@22.19.21)(jiti@2.6.1)(terser@5.48.0))
       vue: 3.5.30(typescript@5.9.3)
@@ -6433,10 +6433,10 @@ snapshots:
       dompurify: 3.2.7
       marked: 14.0.0
 
-  monaco-tree-editor@1.2.0(@vue/reactivity@3.5.30)(monaco-editor@0.55.1)(vue@3.5.30(typescript@5.9.3)):
+  monaco-tree-editor@1.2.1(@vue/reactivity@3.5.30)(monaco-editor@0.55.1)(vue@3.5.30(typescript@5.9.3)):
     dependencies:
       monaco-editor: 0.55.1
-      nanoid: 5.1.6
+      nanoid: 5.1.14
       ts-deferred: 1.0.4
       vue: 3.5.30(typescript@5.9.3)
       vue-fn: 0.3.0-rc(@vue/reactivity@3.5.30)(vue@3.5.30(typescript@5.9.3))
@@ -6451,7 +6451,7 @@ snapshots:
 
   nanoid@3.3.13: {}
 
-  nanoid@5.1.6: {}
+  nanoid@5.1.14: {}
 
   napi-build-utils@2.0.0: {}
 
