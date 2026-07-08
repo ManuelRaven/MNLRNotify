@@ -7,7 +7,7 @@ toolchain go1.26.4
 require (
 	github.com/SherClockHolmes/webpush-go v1.4.0
 	github.com/containrrr/shoutrrr v0.8.0
-	github.com/dop251/goja v0.0.0-20260618133527-c9b2ea77db59
+	github.com/dop251/goja v0.0.0-20260701091749-b07b74453ea9
 	github.com/pocketbase/dbx v1.12.0
 	github.com/pocketbase/pocketbase v0.39.4
 	golang.org/x/exp v0.0.0-20260611194520-c48552f49976
