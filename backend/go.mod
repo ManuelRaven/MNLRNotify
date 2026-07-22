@@ -10,7 +10,7 @@ require (
 	github.com/dop251/goja v0.0.0-20260722130236-0768e0998ac0
 	github.com/pocketbase/dbx v1.12.0
 	github.com/pocketbase/pocketbase v0.39.7
-	golang.org/x/exp v0.0.0-20260709172345-9ea1abe57597
+	golang.org/x/exp v0.0.0-20260718201538-764159d718ef
 )
 
 require (
