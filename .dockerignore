@@ -1,6 +1,11 @@
 node_modules
 backend/dist
+backend/binary
 .env
+.git
+dist
+dev-dist
+graphify-out
 
 # Editor directories and files
 .cursorrules

@@ -1,21 +1,28 @@
 # Build frontend
-FROM oven/bun AS builder-bun
+FROM node:24-alpine AS builder-frontend
 WORKDIR /app
 
-COPY . .
-RUN bun install --frozen-lockfile
-RUN bun run build:client
+RUN corepack enable
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile --ignore-scripts
+
+COPY index.html vite.config.ts tsconfig*.json components.d.ts ./
+COPY scripts ./scripts
+COPY frontend ./frontend
+COPY backend ./backend
+RUN pnpm run build:client
 
 # Build backend
 FROM golang:1.26-alpine AS builder-go
 WORKDIR /app
 
-COPY --from=builder-bun /app/backend .
+COPY --from=builder-frontend /app/backend .
 RUN go mod download
 RUN CGO_ENABLED=0 go build -tags production -o mnlrbase
 
 # Deploy binary
 FROM alpine:latest AS runner
+WORKDIR /app
 
 # Install CA certificates for HTTPS
 RUN apk --no-cache add ca-certificates
