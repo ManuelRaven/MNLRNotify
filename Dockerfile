@@ -1,5 +1,5 @@
 # Build frontend
-FROM node:24-alpine AS builder-frontend
+FROM node:26-alpine AS builder-frontend
 WORKDIR /app
 
 RUN corepack enable
