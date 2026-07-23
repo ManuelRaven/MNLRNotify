@@ -64,7 +64,7 @@
       "fast-uri": "3.1.4",
       "picomatch@4": "4.0.5",
       "sharp": "0.35.3",
-      "shell-quote": "1.9.0"
+      "shell-quote": "1.10.0"
     }
   },
   "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
