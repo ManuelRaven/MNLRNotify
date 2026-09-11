@@ -1,6 +1,6 @@
 module mnlr.de/MNLRNotify
 
-go 1.25.0
+go 1.26.0
 
 toolchain go1.26.5
 
@@ -10,7 +10,7 @@ require (
 	github.com/dop251/goja v0.0.0-20260911104922-fabc3b8078ad
 	github.com/pocketbase/dbx v1.12.0
 	github.com/pocketbase/pocketbase v0.39.9
-	golang.org/x/exp v0.0.0-20260718201538-764159d718ef
+	golang.org/x/exp v0.0.0-20260908205506-85c1c2202aba
 )
 
 require (
@@ -46,7 +46,7 @@ require (
 	golang.org/x/image v0.44.0 // indirect
 	golang.org/x/net v0.57.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
-	golang.org/x/sync v0.22.0 // indirect
+	golang.org/x/sync v0.23.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.40.0 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
