@@ -35,6 +35,8 @@ github.com/dop251/goja v0.0.0-20260722130236-0768e0998ac0 h1:1JJPIzrFPTNEHCFkIDh
 github.com/dop251/goja v0.0.0-20260722130236-0768e0998ac0/go.mod h1:LiIEzozrcvNXorsG/3+ypGqdTUAqZryhzSsqi0oU/Qg=
 github.com/dop251/goja v0.0.0-20260906210903-70ad66ec7ce4 h1:GsWm9G80nlJAmJE/r9qdyqQWieJVdJObCMxmu4cZ5dQ=
 github.com/dop251/goja v0.0.0-20260906210903-70ad66ec7ce4/go.mod h1:u8yZRUavu+N4EnFFy6J5fVtjE7lEcZ2YyV2GcBXY9c8=
+github.com/dop251/goja v0.0.0-20260911104922-fabc3b8078ad h1:5gT9hQ9h8CplLZfAGgFMcoLqQS6I9T2sZwQOCXy8/3s=
+github.com/dop251/goja v0.0.0-20260911104922-fabc3b8078ad/go.mod h1:u8yZRUavu+N4EnFFy6J5fVtjE7lEcZ2YyV2GcBXY9c8=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
 github.com/fatih/color v1.18.0 h1:S8gINlzdQ840/4pfAwic/ZE0djQEH3wM94VfqLTZcOM=
