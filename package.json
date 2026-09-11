@@ -63,7 +63,7 @@
       "dompurify": "3.4.13",
       "fast-uri": "3.1.6",
       "picomatch@4": "4.0.5",
-      "sharp": "0.35.3",
+      "sharp": "0.35.4",
       "shell-quote": "1.10.0"
     }
   },
