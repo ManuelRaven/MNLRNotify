@@ -45,8 +45,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.4(typescript@5.9.3)(vue@3.5.42(typescript@5.9.3))
       pocketbase:
-        specifier: ^0.27.0
-        version: 0.27.0
+        specifier: ^0.28.0
+        version: 0.28.1
       vue:
         specifier: ^3.5.14
         version: 3.5.42(typescript@5.9.3)
@@ -2496,8 +2496,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pocketbase@0.27.0:
-    resolution: {integrity: sha512-K5N6d93UP/BNMbMnlZ6BUfy9VPCIvLyqhJFOsNI8OsZwzvKWEAfyD36boi5K4ECIOl5HMlo0TzuaeGdKpMwizQ==}
+  pocketbase@0.28.1:
+    resolution: {integrity: sha512-/3ihkq+rvfcs0MQgrK4sEElOg6gfenHW9S/O+3BSO+V1yT+4B10+9aT22uTQUPqze9ItwNtwWyY5ZmdgVCTdVA==}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -5669,7 +5669,7 @@ snapshots:
       commander: 9.5.0
       dotenv-flow: 4.1.0
 
-  pocketbase@0.27.0: {}
+  pocketbase@0.28.1: {}
 
   possible-typed-array-names@1.1.0: {}
 
