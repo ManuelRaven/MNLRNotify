@@ -13,7 +13,7 @@ COPY backend ./backend
 RUN pnpm run build:client
 
 # Build backend
-FROM golang:1.26-alpine AS builder-go
+FROM golang:1.27-alpine AS builder-go
 WORKDIR /app
 
 COPY --from=builder-frontend /app/backend .
